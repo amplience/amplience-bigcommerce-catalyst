@@ -2,6 +2,7 @@ import { getContentById } from '~/amplience-client/queries/get-content-by-id';
 import { getContentByKey } from '~/amplience-client/queries/get-content-by-key';
 import { getBestSellingProducts } from '~/client/queries/get-best-selling-products';
 import { getFeaturedProducts } from '~/client/queries/get-featured-products';
+import AmplienceContent from '~/components/amplience/wrapper/AmplienceContent';
 import { Hero } from '~/components/hero';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
@@ -20,13 +21,15 @@ export default async function Home() {
     <>
       <Hero />
       <h1>Simple banner by ID</h1>
-      <pre>
-        <code>{JSON.stringify(simpleBanner, null, 2)}</code>
-      </pre>
+      {
+        simpleBanner && 
+        <AmplienceContent content={simpleBanner} />
+      }
       <h1>Simple banner by Key</h1>
-      <pre>
-        <code>{JSON.stringify(simpleBannerKey, null, 2)}</code>
-      </pre>
+      {
+        simpleBannerKey && 
+        <AmplienceContent content={simpleBannerKey} />
+      }
       <div className="my-10">
         <ProductCardCarousel
           products={featuredProducts}
