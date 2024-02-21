@@ -8,13 +8,15 @@ import { ProductCardCarousel } from '~/components/product-card-carousel';
 
 const SIMPLE_BANNER_ID = '1210a3f6-99a2-46d2-9275-79553b71327c';
 const SIMPLE_BANNER_KEY = 'content/simple-banner-1';
+const FLEXIBLE_SLOT_KEY = 'slot/flexible-slot-1';
 
 export default async function Home() {
-  const [bestSellingProducts, featuredProducts, simpleBanner, simpleBannerKey] = await Promise.all([
+  const [bestSellingProducts, featuredProducts, simpleBanner, simpleBannerKey, flexibleSlot] = await Promise.all([
     getBestSellingProducts({ imageWidth: 500, imageHeight: 500 }),
     getFeaturedProducts({ imageWidth: 500, imageHeight: 500 }),
     getContentById(SIMPLE_BANNER_ID),
     getContentByKey(SIMPLE_BANNER_KEY),
+    getContentByKey(FLEXIBLE_SLOT_KEY),
   ]);
 
   return (
@@ -29,6 +31,11 @@ export default async function Home() {
       {
         simpleBannerKey && 
         <AmplienceContent content={simpleBannerKey} />
+      }
+      <h1>Flexible Slot by Key</h1>
+      {
+        flexibleSlot && 
+        <AmplienceContent content={flexibleSlot} />
       }
       <div className="my-10">
         <ProductCardCarousel
