@@ -1,40 +1,52 @@
-export interface ContentItemRequest {
-  id?: string;
-  key?: string;
-}
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 export interface AmplienceContentItem {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
-export interface ContentContext {
-  hubName: string;
-  stagingHost?: string;
-}
-export interface ContentParams {
-  depth?: string;
-  format?: string;
+interface AmplienceClientOptions {
+  hubName?: string;
+  stagingEnvironment?: string;
   locale?: string;
 }
 
-const DEFAULT_PARAMS = { depth: 'all', format: 'inlined', locale: 'en-US' };
-const HUB_NAME = process.env.AMPLIENCE_HUBNAME ?? '';
+class AmplienceClient {
+  url: string;
+  hubName: string;
+  stagingEnvironment: string;
+  params: { depth: string; format: string; locale: string };
+  constructor({ hubName, stagingEnvironment, locale }: AmplienceClientOptions) {
+    const hub = hubName || process.env.AMPLIENCE_HUBNAME || '';
+    const host = stagingEnvironment || `${hub}.cdn.content.amplience.net`;
 
-export const fetchContent = async (
-  items: ContentItemRequest[],
-  params: ContentParams = DEFAULT_PARAMS,
-): Promise<AmplienceContentItem[]> => {
-  const host = `${HUB_NAME}.cdn.content.amplience.net`;
-  const url = `https://${host}/content`;
-  const qs = new URLSearchParams({ ...DEFAULT_PARAMS, ...params }).toString();
+    this.url = `https://${host}/content`;
+    this.hubName = hub;
+    this.stagingEnvironment = stagingEnvironment || '';
+    this.params = { depth: 'all', format: 'inlined', locale: locale || 'en-US' };
+  }
 
-  return Promise.all(
-    items.map(async (item) => {
-      const path = item.id ? `id/${item.id}` : `key/${item.key ?? ''}`;
-      const response = await fetch(`${url}/${path}?${qs}`);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const json: { content: AmplienceContentItem } = await response.json();
+  async getContentItemById(id: string) {
+    const path = `id/${id}`;
+    const qs = new URLSearchParams(this.params).toString();
+    const response = await fetch(`${this.url}/${path}?${qs}`);
+    const json: { content: AmplienceContentItem } = await response.json();
 
-      return json.content;
-    }),
-  );
+    return json.content;
+  }
+
+  async getContentItemByKey(id: string) {
+    const path = `key/${id}`;
+    const qs = new URLSearchParams(this.params).toString();
+    const response = await fetch(`${this.url}/${path}?${qs}`);
+    const json: { content: AmplienceContentItem } = await response.json();
+
+    return json.content;
+  }
+}
+
+export const createAmplienceClient = ({
+  hubName,
+  stagingEnvironment,
+  locale,
+}: AmplienceClientOptions) => {
+  return new AmplienceClient({ hubName, stagingEnvironment, locale });
 };
