@@ -32,11 +32,7 @@ export const GET_CATEGORY_QUERY = /* GraphQL */ `
               brand {
                 name
               }
-              prices {
-                price {
-                  value
-                }
-              }
+              ...Prices
               defaultImage {
                 url(width: 300)
                 altText
