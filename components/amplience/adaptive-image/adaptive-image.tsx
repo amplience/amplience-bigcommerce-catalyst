@@ -1,35 +1,31 @@
-import {
-  type MutableRefObject,
-  type ReactNode,
-  createContext,
-  forwardRef,
-} from 'react';
-import {
-  type AmplienceImage,
-  type ImageTransformations,
-} from '../image/Image.types';
-import {getImageURL} from '../image/Image.utils';
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+import { createContext, forwardRef, LegacyRef, type MutableRefObject, type ReactNode } from 'react';
 
-type ContextState = {
+import { type AmplienceImage, type ImageTransformations } from '../image/image.types';
+import { getImageURL } from '../image/image.utils';
+
+interface ContextState {
   image: AmplienceImage;
   transformations?: ImageTransformations;
   diParams?: string;
   srcset?: {
     [factor: string]: ImageTransformations;
   };
-};
+}
 
 export const AdaptiveImageContext = createContext<ContextState | null>(null);
 
-export type AdaptiveImageProps = {
+export interface AdaptiveImageProps {
   image: AmplienceImage;
   transformations?: ImageTransformations;
-  imageRef?: any;
+  imageRef?: LegacyRef<HTMLImageElement>;
   children?: ReactNode[];
   imageAltText?: string;
   diParams?: string;
   onLoad: () => void;
-};
+}
 
 const AdaptiveImage = ({
   image,
@@ -56,23 +52,14 @@ const AdaptiveImage = ({
     >
       <picture>
         {children}
-        <img
-          alt={imageAltText}
-          ref={imageRef}
-          src={defaultImageUrl}
-          {...other}
-          width="100%"
-        />
+        <img alt={imageAltText} ref={imageRef} src={defaultImageUrl} {...other} width="100%" />
       </picture>
     </AdaptiveImageContext.Provider>
   );
 };
 
 const AdaptiveImageRef = forwardRef((props: AdaptiveImageProps, ref) => (
-  <AdaptiveImage
-    {...props}
-    imageRef={ref as MutableRefObject<HTMLImageElement>}
-  >
+  <AdaptiveImage {...props} imageRef={ref as MutableRefObject<HTMLImageElement>}>
     {props.children}
   </AdaptiveImage>
 ));

@@ -8,14 +8,14 @@ import {
   useRealtimeVisualization,
 } from '~/app/contexts/compare-products-context/amplience/realtime-visualization-context';
 
-import AmplienceContent from '../wrapper/AmplienceContent';
+import AmplienceContent from '../wrapper/amplience-content';
 
 export interface RealtimeVisualizationProps {
   content: AmplienceContentItem;
 }
 
 export default function RealtimeVisualization({ content }: RealtimeVisualizationProps) {
-  const [contentItem, setContentItem] = useState<AmplienceContentItem>(content);
+  const [contentItem, setContentItem] = useState<AmplienceContentItem | undefined>(content);
 
   const updateRealtimeContent = useCallback((realtimeContent: AmplienceContentItem) => {
     setContentItem(realtimeContent);

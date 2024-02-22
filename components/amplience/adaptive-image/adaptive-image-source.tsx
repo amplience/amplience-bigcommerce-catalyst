@@ -1,12 +1,10 @@
-import {
-  useContext,
-  useMemo,
-  type SourceHTMLAttributes,
-  type DetailedHTMLProps,
-} from 'react';
-import {AdaptiveImageContext} from './AdaptiveImage';
-import {type ImageTransformations} from '../image/Image.types';
-import {getImageURL} from '../image/Image.utils';
+/* eslint-disable no-else-return */
+import { type DetailedHTMLProps, type SourceHTMLAttributes, useContext, useMemo } from 'react';
+
+import { type ImageTransformations } from '../image/image.types';
+import { getImageURL } from '../image/image.utils';
+
+import { AdaptiveImageContext } from './adaptive-image';
 
 type AdaptiveImageSourceProps = DetailedHTMLProps<
   SourceHTMLAttributes<HTMLSourceElement>,
@@ -15,10 +13,7 @@ type AdaptiveImageSourceProps = DetailedHTMLProps<
   transformations?: ImageTransformations;
 };
 
-const AdaptiveImageSource = ({
-  transformations,
-  ...other
-}: AdaptiveImageSourceProps) => {
+const AdaptiveImageSource = ({ transformations, ...other }: AdaptiveImageSourceProps) => {
   const {
     image,
     transformations: rootTransformations,
@@ -49,12 +44,9 @@ const AdaptiveImageSource = ({
       ];
     }
   }, [image, rootTransformations, transformations, diParams]);
+
   return imageUrl ? (
-    <source
-      srcSet={`${imageUrl} 1x, ${imageUrl2x} 2x`}
-      src={imageUrl}
-      {...other}
-    />
+    <source srcSet={`${imageUrl} 1x, ${imageUrl2x} 2x`} src={imageUrl} {...other} />
   ) : null;
 };
 

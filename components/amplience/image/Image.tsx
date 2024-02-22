@@ -1,6 +1,11 @@
-import { AmplienceContentItem } from "~/amplience-client";
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AmplienceContentItem } from '~/amplience-client';
 
-import {buildSrcUrl} from './Image.utils';
+import { buildSrcUrl } from './image.utils';
 
 type ImageProps = {
   image: any;
@@ -12,14 +17,7 @@ type ImageProps = {
   display?: string;
 } & AmplienceContentItem;
 
-const Image = ({
-  display = '',
-  image,
-  imageAltText,
-  seoText = '',
-  di = '',
-  query,
-}: ImageProps) => {
+const Image = ({ display = '', image, imageAltText, seoText = '', di = '', query }: ImageProps) => {
   if (!image) {
     return null;
   }
@@ -32,10 +30,17 @@ const Image = ({
     format,
     poiAspect,
     seoText,
-    display
+    display,
   }: any) => {
     return (
       <source
+        media={
+          minWidth
+            ? `(min-width: ${minWidth}px)`
+            : maxWidth
+              ? `(max-width: ${maxWidth}px)`
+              : undefined
+        }
         srcSet={`${buildSrcUrl({
           width,
           poiAspect,
@@ -53,27 +58,20 @@ const Image = ({
           di,
           query,
         })}`}
-        media={
-          minWidth
-            ? `(min-width: ${minWidth}px)`
-            : maxWidth
-            ? `(max-width: ${maxWidth}px)`
-            : undefined
-        }
         type={format ? `image/${format}` : undefined}
       />
     );
   };
 
   const imageTag =
-    display == 'Static' ? (
+    display === 'Static' ? (
       <picture>
         <img
+          alt={imageAltText}
           loading="lazy"
           src={`https://${image.endpoint}.a.bigcontent.io/v1/static/${image.name}`}
-          width="100%"
-          alt={imageAltText}
           title={seoText}
+          width="100%"
         />
       </picture>
     ) : (
@@ -105,16 +103,16 @@ const Image = ({
         })}
 
         <img
-          loading="lazy"
-          src={buildSrcUrl({image, seoText, display, di, query})}
           alt={imageAltText}
+          loading="lazy"
+          src={buildSrcUrl({ image, seoText, display, di, query })}
           title={seoText}
           width="100%"
         />
       </picture>
     );
 
-  return <div className="w-auto relative">{imageTag}</div>;
+  return <div className="relative w-auto">{imageTag}</div>;
 };
 
 export default Image;
