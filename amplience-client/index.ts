@@ -3,7 +3,7 @@ export interface ContentItemRequest {
   key?: string;
 }
 export interface AmplienceContentItem {
-  [key: string]: Record<string, unknown>;
+  [key: string]: any;
 }
 
 export interface ContentContext {
