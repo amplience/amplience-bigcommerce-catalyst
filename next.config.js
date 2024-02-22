@@ -3,9 +3,9 @@
 const cspHeader = `
   base-uri 'self';
   form-action 'self';
-  frame-ancestors 'none';
+  frame-ancestors 'self' *.amplience.net;
   upgrade-insecure-requests;
-`
+`;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -38,8 +38,8 @@ const nextConfig = {
           },
         ],
       },
-    ]
-  }
+    ];
+  },
 };
 
 module.exports = nextConfig;
