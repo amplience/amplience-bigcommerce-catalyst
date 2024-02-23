@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCategory } from '~/client/queries/get-category';
 
-import { getProducts } from '~/client/queries/get-products';
-
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   const { id } = params;
 

@@ -25,7 +25,7 @@ const DynamicProductGrid = ({ limit, category }: DynamicProductGridProps) => {
       }
     }
     load();
-  }, [category]);
+  }, [category, limit]);
 
   return (
     <ProductCardCarousel
