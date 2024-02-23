@@ -11,7 +11,6 @@ export const GET = async (request: NextRequest, { params }: { params: { ids: str
       productIds: productIds,
       first: productIds.length
     });
-    console.log(productIds)
     return NextResponse.json(products);
   }
 

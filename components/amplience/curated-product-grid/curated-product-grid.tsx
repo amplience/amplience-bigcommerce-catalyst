@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
 interface CuratedProductGridProps {
@@ -5,12 +8,23 @@ interface CuratedProductGridProps {
   products: string[];
 }
 
-const CuratedProductGrid = async ({ header, products }: CuratedProductGridProps) => {
-  const prods = await fetch(`http://localhost:3000/api/products/${products.join(',')}`).then((res) => res.json());
+const CuratedProductGrid = ({ header, products }: CuratedProductGridProps) => {
+  const hostname = `http://localhost:3000`;
+  const [hydratedProducts, setHydratedProducts] = useState<any[]>([]);
+  
+  useEffect(() => {
+      const load = async () => {
+      if (products?.length) {
+        const prods = await fetch(`${hostname}/api/products/${products.join(',')}`).then((res) => res.json()); 
+        setHydratedProducts(prods);
+      }
+    }
+    load();
+  }, [products]);
 
   return (
     <ProductCardCarousel
-      products={prods}
+      products={hydratedProducts}
       showCart={false}
       showCompare={false}
       showReviews={false}

@@ -1,5 +1,8 @@
+'use client';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
+import { useEffect, useState } from 'react';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
 interface DynamicProductGridProps {
@@ -7,16 +10,26 @@ interface DynamicProductGridProps {
   category: string;
 }
 
-const DynamicProductGrid = async ({ limit, category }: DynamicProductGridProps) => {
-  let prods = await fetch(`http://localhost:3000/api/products-in-category/${category}`).then((res) => res.json());
+const DynamicProductGrid = ({ limit, category }: DynamicProductGridProps) => {
+  const hostname = `http://localhost:3000`;
+  const [hydratedProducts, setHydratedProducts] = useState<any[]>([]);
 
-  if (limit) {
-    prods = prods.slice(0, limit);
-  }
+  useEffect(() => {
+      const load = async () => {
+      if (category) {
+        let prods = await fetch(`${hostname}/api/products-in-category/${category}`).then((res) => res.json());
+        if (limit) {
+          prods = prods.slice(0, limit);
+        }
+        setHydratedProducts(prods);
+      }
+    }
+    load();
+  }, [category]);
 
   return (
     <ProductCardCarousel
-      products={prods}
+      products={hydratedProducts}
       showCart={false}
       showCompare={false}
       showReviews={false}
