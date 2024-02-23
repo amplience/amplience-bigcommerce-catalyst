@@ -1,31 +1,22 @@
-// import { getProducts } from '~/client/queries/get-products';
-// import { ProductCardCarousel } from '~/components/product-card-carousel';
+import { ProductCardCarousel } from '~/components/product-card-carousel';
 
-// interface CuratedProductGridProps {
-//   header: string;
-//   products: string[];
-// }
+interface CuratedProductGridProps {
+  header: string;
+  products: string[];
+}
 
-// const CuratedProductGrid = async ({ header, products }: CuratedProductGridProps) => {
-//   const productIds = products.map((item) => Number(item));
-//   const prods = await getProducts({
-//     productIds,
-//     first: productIds.length,
-//   });
+const CuratedProductGrid = async ({ header, products }: CuratedProductGridProps) => {
+  const prods = await fetch(`http://localhost:3000/api/products/${products.join(',')}`).then((res) => res.json());
 
-//   return (
-//     <ProductCardCarousel
-//       products={prods}
-//       showCart={false}
-//       showCompare={false}
-//       showReviews={false}
-//       title={header}
-//     />
-//   );
-// };
-
-const CuratedProductGrid = () => {
-  return <p>CuratedProductGrid</p>;
+  return (
+    <ProductCardCarousel
+      products={prods}
+      showCart={false}
+      showCompare={false}
+      showReviews={false}
+      title={header}
+    />
+  );
 };
 
 export default CuratedProductGrid;

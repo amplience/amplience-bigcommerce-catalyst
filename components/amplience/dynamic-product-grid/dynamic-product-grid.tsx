@@ -1,37 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-// import { getCategory } from '~/client/queries/get-category';
-// import { ProductCardCarousel } from '~/components/product-card-carousel';
+import { ProductCardCarousel } from '~/components/product-card-carousel';
 
-// interface DynamicProductGridProps {
-//   limit: number;
-//   category: string;
-// }
+interface DynamicProductGridProps {
+  limit: number;
+  category: string;
+}
 
-// const DynamicProductGrid = async ({ limit, category }: DynamicProductGridProps) => {
-//   const categoryId = Number(category);
-//   const cat = await getCategory({
-//     categoryId,
-//   });
-//   let products = cat?.products.items as any[];
+const DynamicProductGrid = async ({ limit, category }: DynamicProductGridProps) => {
+  let prods = await fetch(`http://localhost:3000/api/products-in-category/${category}`).then((res) => res.json());
 
-//   if (limit) {
-//     products = products.slice(0, limit);
-//   }
+  if (limit) {
+    prods = prods.slice(0, limit);
+  }
 
-//   return (
-//     <ProductCardCarousel
-//       products={products.items as any[]}
-//       showCart={false}
-//       showCompare={false}
-//       showReviews={false}
-//       title=""
-//     />
-//   );
-// };
-
-const DynamicProductGrid = () => {
-  return <p>DynamicProductGrid</p>;
+  return (
+    <ProductCardCarousel
+      products={prods}
+      showCart={false}
+      showCompare={false}
+      showReviews={false}
+      title=""
+    />
+  );
 };
 
 export default DynamicProductGrid;
