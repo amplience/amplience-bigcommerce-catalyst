@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Product } from '~/components/product-card';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
 interface CuratedProductGridProps {
@@ -10,12 +11,25 @@ interface CuratedProductGridProps {
 
 const CuratedProductGrid = ({ header, products }: CuratedProductGridProps) => {
   const hostname = `http://localhost:3000`;
-  const [hydratedProducts, setHydratedProducts] = useState<any[]>([]);
+  const [hydratedProducts, setHydratedProducts] = useState<Product[]>([]);
   
   useEffect(() => {
       const load = async () => {
       if (products?.length) {
-        const prods = await fetch(`${hostname}/api/products/${products.join(',')}`).then((res) => res.json()); 
+
+        // products are NOT return in the order requested
+        // reorder prods based on products order
+        let prods = await fetch(`${hostname}/api/products/${products.join(',')}`).then((res) => res.json()); 
+        prods = products.map((productId) => { return prods.find((product: Product) => product.entityId == Number(productId))});
+
+        // alternate solution, multiple requests in the right order
+        // const prods: Product[]= await Promise.all(
+        //   products.map(async (productId) => {
+        //     const res = await fetch(`${hostname}/api/product/${productId}`);
+        //     return await res.json();
+        //   })
+        // );
+
         setHydratedProducts(prods);
       }
     }
