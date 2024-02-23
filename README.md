@@ -1,5 +1,47 @@
 # amplience-bigcommerce-catalyst
 
+## Amplience Specifics
+
+This version of the Catalyst app integrates Amplience as the Content CMS.
+
+- drive site content
+- schedule & preview content
+- real-time visualisation of content
+- automation scripts to load required content schemas and types to your Content HUB
+
+The documentation starting here below is 'as-is' from BigCommerce. For Amplience specifics please see the docs listed under Amplience Contents.
+
+## Amplience Contents
+
+### 🏁 Quick Start
+
+- [Getting Started](./docs/amplience/getting-started.md)
+- [Catalyst Setup](./docs/amplience/catalyst-setup.md)
+- [Security Update](./docs/amplience/security-update.md)
+
+### ⚙️ Core Functionalities
+
+- [Amplience Configuration](./docs/amplience/amplience-configuration.md)
+- [Amplience API](./docs/amplience/amplience-api.md)
+- [Visualisation](./docs/amplience/visualisation.md)
+- [Preview](./docs/amplience/preview.md)
+- [Amplience Account](./docs/amplience/amplience-account.md)
+- [Automation](./docs/amplience/automation.md)
+
+### 🧩 Components & Extensions
+
+- [Amplience Extensions List](./docs/amplience/amplience-extensions-list.md)
+  - eComm Toolkit
+- [Amplience Components List](./docs/amplience/amplience-components-list.md)
+  - Image
+  - Text
+  - Sample Banner
+  - Curated Product Grid
+  - Dynamic Product Grid
+  - Amplience Content wrapper
+- [Amplience Slots List](./docs/amplience/amplience-slots-list.md)
+  - Flexible Slot
+
 ## Requirements
 
 - Node.js 18+
