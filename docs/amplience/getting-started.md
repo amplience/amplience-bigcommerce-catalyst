@@ -1,5 +1,11 @@
 # Getting Started
 
+Main Amplience configuration is set through an environment variable. You can set it locally in a `.env.local` file:
+
+```
+AMPLIENCE_HUBNAME=<dc hubname>
+```
+
 If this installation of Catalyst was created using the catalyst-storefront CLI, you should already be connected to a store and can get started immediately by running:
 
 ```
@@ -13,9 +19,3 @@ npx create-catalyst-storefront@latest init
 ```
 
 Learn more about Catalyst at catalyst.dev.
-
-Main Amplience configuration is set through an environment variable. You can set it locally in a `.env.local` file:
-
-```
-AMPLIENCE_HUBNAME=<dc hubname>
-```
