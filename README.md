@@ -16,8 +16,6 @@ The documentation starting here below is 'as-is' from BigCommerce. For Amplience
 ### 🏁 Quick Start
 
 - [Getting Started](./docs/amplience/getting-started.md)
-- [Catalyst Setup](./docs/amplience/catalyst-setup.md)
-- [Security Update](./docs/amplience/security-update.md)
 
 ### ⚙️ Core Functionalities
 
