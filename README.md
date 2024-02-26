@@ -26,7 +26,6 @@ The documentation starting here below is 'as-is' from BigCommerce. For Amplience
 - [Visualisation](./docs/amplience/visualisation.md)
 - [Preview](./docs/amplience/preview.md)
 - [Amplience Account](./docs/amplience/amplience-account.md)
-- [Automation](./docs/amplience/automation.md)
 
 ### 🧩 Components & Extensions
 
