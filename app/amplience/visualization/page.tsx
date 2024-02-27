@@ -21,3 +21,5 @@ export default async function Visualization({ searchParams }: VisualizationProps
 }
 
 export const runtime = 'edge';
+
+export const fetchCache = 'force-no-store';
