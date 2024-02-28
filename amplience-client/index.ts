@@ -1,6 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 export interface AmplienceContentItem {
   [key: string]: any;
+  _meta?: {
+    schema?: string;
+    name?: string;
+    deliveryId?: string;
+    deliveryKey?: string;
+  };
 }
 
 interface AmplienceClientOptions {

@@ -1,15 +1,11 @@
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AmplienceContentItem } from '~/amplience-client';
 
+import { AmplienceImage } from './image.types';
 import { buildSrcUrl } from './image.utils';
 
 type ImageProps = {
-  image: any;
-  query?: any;
+  image?: AmplienceImage;
+  query: string;
   format?: string;
   imageAltText?: string;
   di?: string;
@@ -17,46 +13,46 @@ type ImageProps = {
   display?: string;
 } & AmplienceContentItem;
 
-const Image = ({ display = '', image, imageAltText, seoText = '', di = '', query }: ImageProps) => {
+interface SourceProps {
+  minWidth?: number;
+  maxWidth?: number;
+  width?: number;
+  highDensityWidth?: number;
+  poiAspect?: string;
+}
+
+const Image = ({
+  display = '',
+  image,
+  imageAltText,
+  seoText = '',
+  di = '',
+  query,
+  format,
+}: ImageProps) => {
   if (!image) {
-    return null;
+    return <></>;
   }
 
-  const source = ({
-    minWidth,
-    maxWidth,
-    width,
-    highDensityWidth,
-    format,
-    poiAspect,
-    seoText,
-    display,
-  }: any) => {
+  const source = ({ minWidth, maxWidth, width, highDensityWidth, poiAspect }: SourceProps) => {
+    let mediaQuery;
+
+    if (minWidth) {
+      mediaQuery = `(min-width: ${minWidth}px)`;
+    }
+
+    if (maxWidth) {
+      mediaQuery = `(max-width: ${maxWidth}px)`;
+    }
+
+    const buildSrcProps = { width, poiAspect, image, seoText, display, di, query };
+
     return (
       <source
-        media={
-          minWidth
-            ? `(min-width: ${minWidth}px)`
-            : maxWidth
-              ? `(max-width: ${maxWidth}px)`
-              : undefined
-        }
-        srcSet={`${buildSrcUrl({
-          width,
-          poiAspect,
-          image,
-          seoText,
-          display,
-          di,
-          query,
-        })} 1x, ${buildSrcUrl({
+        media={mediaQuery}
+        srcSet={`${buildSrcUrl(buildSrcProps)} 1x, ${buildSrcUrl({
+          ...buildSrcProps,
           width: highDensityWidth,
-          poiAspect,
-          image,
-          seoText,
-          display,
-          di,
-          query,
         })}`}
         type={format ? `image/${format}` : undefined}
       />
@@ -78,27 +74,27 @@ const Image = ({ display = '', image, imageAltText, seoText = '', di = '', query
       <picture>
         {/* High density widths selected to be below max avif image size at aspect ratio. (2.5mil pixels) */}
         {source({
-          minWidth: '1280',
-          width: '1500',
-          highDensityWidth: '2234',
+          minWidth: 1280,
+          width: 1500,
+          highDensityWidth: 2234,
           poiAspect: '2:1',
         })}
         {source({
-          minWidth: '1024',
-          width: '1280',
-          highDensityWidth: '2234',
+          minWidth: 1024,
+          width: 1280,
+          highDensityWidth: 2234,
           poiAspect: '2:1',
         })}
         {source({
-          minWidth: '768',
-          width: '1024',
-          highDensityWidth: '1920',
+          minWidth: 768,
+          width: 1024,
+          highDensityWidth: 1920,
           poiAspect: '1.5:1',
         })}
         {source({
-          maxWidth: '768',
-          width: '768',
-          highDensityWidth: '1536',
+          maxWidth: 768,
+          width: 768,
+          highDensityWidth: 1536,
           poiAspect: '1:1',
         })}
 
