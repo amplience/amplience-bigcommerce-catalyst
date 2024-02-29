@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import { Product } from '~/components/product-card';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
@@ -9,32 +10,39 @@ interface CuratedProductGridProps {
   products: string[];
 }
 
-const CuratedProductGrid = ({ header, products }: CuratedProductGridProps) => {
+const CuratedProductGrid = ({ header, products = [] }: CuratedProductGridProps) => {
   const hostname = `http://localhost:3000`;
   const [hydratedProducts, setHydratedProducts] = useState<Product[]>([]);
-  
+
   useEffect(() => {
-      const load = async () => {
-      if (products?.length) {
+    const load = async () => {
+      if (products.length) {
+        const response = await fetch(`${hostname}/api/products/${products.join(',')}`);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const responseProducts = await response.json();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const allProducts: Product[] = Array.isArray(responseProducts) ? responseProducts : [];
 
         // products are NOT return in the order requested
         // reorder prods based on products order
-        let prods = await fetch(`${hostname}/api/products/${products.join(',')}`).then((res) => res.json()); 
-        prods = products.map((productId) => { return prods.find((product: Product) => product.entityId == Number(productId))});
+        const orderedProducts: Product[] = [];
 
-        // alternate solution, multiple requests in the right order
-        // const prods: Product[]= await Promise.all(
-        //   products.map(async (productId) => {
-        //     const res = await fetch(`${hostname}/api/product/${productId}`);
-        //     return await res.json();
-        //   })
-        // );
+        products.forEach((productId) => {
+          const foundProduct = allProducts.find(
+            (product: Product) => product.entityId === Number(productId),
+          );
 
-        setHydratedProducts(prods);
+          if (foundProduct) {
+            orderedProducts.push(foundProduct);
+          }
+        });
+
+        setHydratedProducts(orderedProducts);
       }
-    }
-    load();
-  }, [products]);
+    };
+
+    void load();
+  }, [hostname, products]);
 
   return (
     <ProductCardCarousel
