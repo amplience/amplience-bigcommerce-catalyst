@@ -45,7 +45,7 @@ const AdaptiveImageSource = ({ transformations, ...other }: AdaptiveImageSourceP
   }, [image, rootTransformations, transformations, diParams]);
 
   return imageUrl ? (
-    <source srcSet={`${imageUrl} 1x, ${imageUrl2x} 2x`} src={imageUrl} {...other} />
+    <source src={imageUrl} srcSet={`${imageUrl} 1x, ${imageUrl2x} 2x`} {...other} />
   ) : null;
 };
 

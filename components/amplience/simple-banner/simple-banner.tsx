@@ -1,6 +1,6 @@
 'use client';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 import DefaultAdaptiveImageRef from '../adaptive-image/default-adaptive-image';

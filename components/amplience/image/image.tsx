@@ -31,7 +31,7 @@ const Image = ({
   format,
 }: ImageProps) => {
   if (!image) {
-    return <></>;
+    return;
   }
 
   const source = ({ minWidth, maxWidth, width, highDensityWidth, poiAspect }: SourceProps) => {
