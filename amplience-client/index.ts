@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 export interface AmplienceContentItem {
-  [key: string]: unknown;
+  [key: string]: any;
 }
 
 interface AmplienceClientOptions {

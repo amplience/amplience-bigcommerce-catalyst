@@ -1,13 +1,11 @@
-import {forwardRef} from 'react';
-import AdaptiveImage, {type AdaptiveImageProps} from './AdaptiveImage';
-import AdaptiveImageSource from './AdaptiveImageSource';
+import { forwardRef, LegacyRef } from 'react';
+
+import AdaptiveImage, { type AdaptiveImageProps } from './adaptive-image';
+import AdaptiveImageSource from './adaptive-image-source';
 
 type DefaultAdaptiveImageProps = Omit<AdaptiveImageProps, 'children'>;
 
-const DefaultAdaptiveImage = ({
-  imageRef,
-  ...props
-}: DefaultAdaptiveImageProps) => {
+const DefaultAdaptiveImage = ({ imageRef, ...props }: DefaultAdaptiveImageProps) => {
   return (
     <AdaptiveImage ref={imageRef} {...props}>
       <AdaptiveImageSource
@@ -43,7 +41,7 @@ const DefaultAdaptiveImage = ({
 };
 
 const DefaultAdaptiveImageRef = forwardRef(
-  (props: AdaptiveImageProps, ref: any) => (
+  (props: AdaptiveImageProps, ref: LegacyRef<HTMLImageElement>) => (
     <DefaultAdaptiveImage imageRef={ref} {...props} />
   ),
 );

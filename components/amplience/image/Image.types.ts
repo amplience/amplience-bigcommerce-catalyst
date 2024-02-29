@@ -1,8 +1,8 @@
-export type AmplienceImage = {
+export interface AmplienceImage {
   defaultHost: string;
   name: string;
   endpoint: string;
-};
+}
 
 export enum ImageFormat {
   WEBP = 'webp',
@@ -36,7 +36,7 @@ export enum ImageScaleFit {
   POINT_OF_INTEREST = 'poi',
 }
 
-export type ImageTransformations = {
+export interface ImageTransformations {
   format?: ImageFormat;
   seoFileName?: string;
 
@@ -45,7 +45,7 @@ export type ImageTransformations = {
 
   quality?: number;
 
-  poi?: {x: number; y: number};
+  poi?: { x: number; y: number };
   scaleMode?: ImageScaleMode;
   scaleFit?: ImageScaleFit;
   aspectRatio?: string;
@@ -63,4 +63,4 @@ export type ImageTransformations = {
   strip?: boolean;
 
   templates?: string[];
-};
+}

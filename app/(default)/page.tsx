@@ -1,7 +1,7 @@
 import { createAmplienceClient } from '~/amplience-client';
 import { getBestSellingProducts } from '~/client/queries/get-best-selling-products';
 import { getFeaturedProducts } from '~/client/queries/get-featured-products';
-import AmplienceContent from '~/components/amplience/wrapper/AmplienceContent';
+import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
 import { Hero } from '~/components/hero';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 

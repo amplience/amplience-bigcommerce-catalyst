@@ -1,17 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 'use client';
 
-import {useEffect, useRef, useState} from 'react';
-import DefaultAdaptiveImageRef from '../adaptive-image/DefaultAdaptiveImage';
-import DefaultAdaptiveImageSkeleton from '../adaptive-image/DefaultAdaptiveImageSkeleton';
 import clsx from 'clsx';
-import {
-  ImageScaleMode,
-  type AmplienceImage,
-  ImageScaleFit,
-  type ImageTransformations,
-} from '../image/Image.types';
+import { useEffect, useRef, useState } from 'react';
 
-type SimpleBannerProps = {
+import DefaultAdaptiveImageRef from '../adaptive-image/default-adaptive-image';
+import DefaultAdaptiveImageSkeleton from '../adaptive-image/default-adaptive-image-skeleton';
+import {
+  AmplienceImage,
+  ImageScaleFit,
+  ImageScaleMode,
+  type ImageTransformations,
+} from '../image/image.types';
+
+export interface SimpleBannerProps {
   image: {
     img: {
       image: ImageTransformations & {
@@ -36,7 +41,7 @@ type SimpleBannerProps = {
     textPositionHorizontal: 'left' | 'center' | 'right';
     textPositionVertical: 'top' | 'middle' | 'bottom';
   };
-};
+}
 
 const SimpleBanner = ({
   image,
@@ -51,37 +56,32 @@ const SimpleBanner = ({
   const [imageLoading, setImageLoading] = useState(true);
   const imageRef = useRef<any>();
 
-  /**
-   * Method called with the image is loaded
-   */
+  // Method called with the image is loaded
   const handleImageLoaded = () => {
     setImageLoading(false);
   };
 
-  /**
-   * Checking that the image is loaded
-   */
+  // Checking that the image is loaded
+
   useEffect(() => {
-    if (imageRef?.current?.complete && imageLoading) {
+    if (imageRef.current?.complete && imageLoading) {
       setImageLoading(false);
     }
-  }, [imageRef?.current?.complete, imageLoading]);
+  }, [imageRef.current?.complete, imageLoading]);
 
-  const {img} = image || {};
+  const { img } = image || {};
 
   const transformations: ImageTransformations = {
     ...img?.image,
     upscale: false,
     strip: true,
     quality: 80,
-    scaleMode: !image?.disablePoiAspectRatio
-      ? ImageScaleMode.ASPECT_RATIO
-      : undefined,
+    scaleMode: !image?.disablePoiAspectRatio ? ImageScaleMode.ASPECT_RATIO : undefined,
     scaleFit:
       !image?.disablePoiAspectRatio &&
       img?.image?.poi &&
-      img?.image?.poi.x != -1 &&
-      img?.image?.poi.y != -1
+      img?.image?.poi.x !== -1 &&
+      img?.image?.poi.y !== -1
         ? ImageScaleFit.POINT_OF_INTEREST
         : undefined,
   };
@@ -93,14 +93,13 @@ const SimpleBanner = ({
     bannerText?.description ||
     ctaSettings?.buttonText;
 
-  const {textPositionHorizontal, textPositionVertical} = textPositioning;
+  const { textPositionHorizontal, textPositionVertical } = textPositioning;
   const placements = {
     'left-top': 'md:left-0 md:top-0',
     'left-middle': 'md:left-0 md:top-1/2 md:-translate-y-1/2',
     'left-bottom': 'md:left-0 md:bottom-0',
     'center-top': 'md:top-0 md:left-1/2 md:-translate-x-1/2',
-    'center-middle':
-      'md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
+    'center-middle': 'md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
     'center-bottom': 'md:bottom-0 md:left-1/2 md:-translate-x-1/2',
     'right-top': 'md:right-0 md:top-0',
     'right-middle': 'md:right-0 md:top-1/2 md:-translate-y-1/2',
@@ -117,31 +116,31 @@ const SimpleBanner = ({
         }}
       >
         <DefaultAdaptiveImageRef
-          ref={imageRef}
-          onLoad={() => handleImageLoaded()}
+          diParams={image?.di}
           image={img?.image.image}
           imageAltText={image?.imageAltText}
+          onLoad={() => handleImageLoaded()}
+          ref={imageRef}
           transformations={transformations}
-          diParams={image?.di}
         />
       </div>
-      {isOverlayVisible && (
+      {Boolean(isOverlayVisible) && (
         <div
+          className={clsx(
+            'max-w-[500px] px-10 py-6 text-center md:absolute',
+            placements[`${textPositionHorizontal}-${textPositionVertical}`],
+          )}
           style={{
             backgroundColor: `rgba(255, 255, 255, ${opacity})`,
             textAlign: textPositionHorizontal,
           }}
-          className={clsx(
-            'py-6 px-10 text-center max-w-[500px] md:absolute',
-            placements[`${textPositionHorizontal}-${textPositionVertical}`],
-          )}
         >
           <h1 className="mt-0">{bannerText?.header}</h1>
           <h2>{bannerText?.subheader}</h2>
-          <p style={{marginBottom: '20px'}}>{bannerText?.description}</p>
-          {ctaSettings && ctaSettings.buttonText && (
+          <p style={{ marginBottom: '20px' }}>{bannerText?.description}</p>
+          {Boolean(ctaSettings && ctaSettings.buttonText) && (
             <a
-              className="mt-4 font-bold font text-xs no-underline hover:no-underline bg-[#333] hover:bg-[#eee] text-[#eee] hover:text-[#333] py-2.5 px-3.5 rounded"
+              className="font mt-4 rounded bg-[#333] px-3.5 py-2.5 text-xs font-bold text-[#eee] no-underline hover:bg-[#eee] hover:text-[#333] hover:no-underline"
               href={ctaSettings?.linkUrl}
             >
               {ctaSettings?.buttonText}
