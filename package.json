@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check \"{app,src,test}/**/*.{ts[x],js}\"",
+    "format": "prettier --write \"{app,src,test}/**/*.{ts[x],js}\"",
     "lint": "next lint",
     "test": "jest",
     "dev": "concurrently \"pnpm:dev-*\"",
@@ -38,6 +40,7 @@
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.294.0",
     "markdown-to-jsx": "^7.4.1",
+    "nanoid": "^5.0.6",
     "next": "^14.1.0",
     "next-auth": "5.0.0-beta.4",
     "react": "^18.2.0",

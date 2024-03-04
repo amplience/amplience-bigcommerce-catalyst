@@ -1,10 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-
 'use client';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 import DefaultAdaptiveImageRef from '../adaptive-image/default-adaptive-image';
@@ -18,8 +14,8 @@ import {
 import LinkWithQuery from '../link-with-query/link-with-query';
 
 export interface SimpleBannerProps {
-  image: {
-    img: {
+  image?: {
+    img?: {
       image: ImageTransformations & {
         image: AmplienceImage;
       };
@@ -28,17 +24,17 @@ export interface SimpleBannerProps {
     imageAltText: string;
     di: string;
   };
-  bannerText: {
+  bannerText?: {
     header: string;
     subheader?: string;
     description: string;
   };
   opacity?: number;
-  ctaSettings: {
+  ctaSettings?: {
     linkUrl: string;
     buttonText: string;
   };
-  textPositioning: {
+  textPositioning?: {
     textPositionHorizontal: 'left' | 'center' | 'right';
     textPositionVertical: 'top' | 'middle' | 'bottom';
   };
@@ -55,7 +51,7 @@ const SimpleBanner = ({
   },
 }: SimpleBannerProps) => {
   const [imageLoading, setImageLoading] = useState(true);
-  const imageRef = useRef<any>();
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // Method called with the image is loaded
   const handleImageLoaded = () => {
@@ -80,9 +76,9 @@ const SimpleBanner = ({
     scaleMode: !image?.disablePoiAspectRatio ? ImageScaleMode.ASPECT_RATIO : undefined,
     scaleFit:
       !image?.disablePoiAspectRatio &&
-      img?.image?.poi &&
-      img?.image?.poi.x !== -1 &&
-      img?.image?.poi.y !== -1
+      img?.image.poi &&
+      img.image.poi.x !== -1 &&
+      img.image.poi.y !== -1
         ? ImageScaleFit.POINT_OF_INTEREST
         : undefined,
   };
@@ -142,7 +138,7 @@ const SimpleBanner = ({
           {Boolean(ctaSettings && ctaSettings.buttonText) && (
             <LinkWithQuery
               className="font mt-4 rounded bg-[#333] px-3.5 py-2.5 text-xs font-bold text-[#eee] no-underline hover:bg-[#eee] hover:text-[#333] hover:no-underline"
-              href={ctaSettings?.linkUrl}
+              href={ctaSettings?.linkUrl || '#'}
             >
               {ctaSettings?.buttonText}
             </LinkWithQuery>

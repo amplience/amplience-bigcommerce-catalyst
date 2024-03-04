@@ -1,4 +1,3 @@
-/* eslint-disable no-else-return */
 import { type DetailedHTMLProps, type SourceHTMLAttributes, useContext, useMemo } from 'react';
 
 import { type ImageTransformations } from '../image/image.types';
@@ -28,25 +27,25 @@ const AdaptiveImageSource = ({ transformations, ...other }: AdaptiveImageSourceP
 
     if (!image) {
       return [undefined, undefined];
-    } else {
-      return [
-        getImageURL(image, params, false, diParams),
-        getImageURL(
-          image,
-          {
-            ...params,
-            width: params.width ? params.width * 2 : undefined,
-            height: params.height ? params.height * 2 : undefined,
-          },
-          false,
-          diParams,
-        ),
-      ];
     }
+
+    return [
+      getImageURL(image, params, false, diParams),
+      getImageURL(
+        image,
+        {
+          ...params,
+          width: params.width ? params.width * 2 : undefined,
+          height: params.height ? params.height * 2 : undefined,
+        },
+        false,
+        diParams,
+      ),
+    ];
   }, [image, rootTransformations, transformations, diParams]);
 
   return imageUrl ? (
-    <source srcSet={`${imageUrl} 1x, ${imageUrl2x} 2x`} src={imageUrl} {...other} />
+    <source src={imageUrl} srcSet={`${imageUrl} 1x, ${imageUrl2x} 2x`} {...other} />
   ) : null;
 };
 
