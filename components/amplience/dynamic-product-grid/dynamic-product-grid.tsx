@@ -11,13 +11,12 @@ interface DynamicProductGridProps {
 }
 
 const DynamicProductGrid = ({ limit = 10, category }: DynamicProductGridProps) => {
-  const hostname = `http://localhost:3000`;
   const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
 
   useEffect(() => {
     const load = async () => {
       if (category) {
-        const response = await fetch(`${hostname}/api/products-in-category/${category}`);
+        const response = await fetch(`/api/products-in-category/${category}`);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const allProducts = await response.json();
         const products = Array.isArray(allProducts) ? allProducts.slice(0, limit) : [];
@@ -27,7 +26,7 @@ const DynamicProductGrid = ({ limit = 10, category }: DynamicProductGridProps) =
     };
 
     void load();
-  }, [category, hostname, limit]);
+  }, [category, limit]);
 
   return (
     <ProductCardCarousel

@@ -11,13 +11,12 @@ interface CuratedProductGridProps {
 }
 
 const CuratedProductGrid = ({ header, products = [] }: CuratedProductGridProps) => {
-  const hostname = `http://localhost:3000`;
   const [hydratedProducts, setHydratedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const load = async () => {
       if (products.length) {
-        const response = await fetch(`${hostname}/api/products/${products.join(',')}`);
+        const response = await fetch(`/api/products/${products.join(',')}`);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const responseProducts = await response.json();
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -42,7 +41,7 @@ const CuratedProductGrid = ({ header, products = [] }: CuratedProductGridProps) 
     };
 
     void load();
-  }, [hostname, products]);
+  }, [products]);
 
   return (
     <ProductCardCarousel
