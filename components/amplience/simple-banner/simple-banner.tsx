@@ -15,6 +15,7 @@ import {
   ImageScaleMode,
   type ImageTransformations,
 } from '../image/image.types';
+import LinkWithQuery from '../link-with-query/link-with-query';
 
 export interface SimpleBannerProps {
   image: {
@@ -139,12 +140,12 @@ const SimpleBanner = ({
           <h2>{bannerText?.subheader}</h2>
           <p style={{ marginBottom: '20px' }}>{bannerText?.description}</p>
           {Boolean(ctaSettings && ctaSettings.buttonText) && (
-            <a
+            <LinkWithQuery
               className="font mt-4 rounded bg-[#333] px-3.5 py-2.5 text-xs font-bold text-[#eee] no-underline hover:bg-[#eee] hover:text-[#333] hover:no-underline"
               href={ctaSettings?.linkUrl}
             >
               {ctaSettings?.buttonText}
-            </a>
+            </LinkWithQuery>
           )}
         </div>
       )}

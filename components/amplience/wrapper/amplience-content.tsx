@@ -34,13 +34,13 @@ const MappingNotFound = (content: AmplienceContentItem) => {
 };
 
 export interface AmplienceContentProps {
-  content: AmplienceContentItem;
+  content?: AmplienceContentItem;
 }
 
 // Wrapper component maps Amplience components based on content schema
 
 const AmplienceContent = ({ content }: AmplienceContentProps) => {
-  const contentSchema = content._meta?.schema;
+  const contentSchema = content?._meta?.schema;
 
   const Component = COMPONENT_MAPPING[contentSchema] ?? MappingNotFound;
 
