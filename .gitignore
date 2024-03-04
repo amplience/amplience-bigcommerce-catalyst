@@ -41,3 +41,5 @@ schema.graphql
 
 # secrets
 .catalyst
+
+certificates
