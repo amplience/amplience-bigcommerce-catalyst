@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "dev": "concurrently \"pnpm:dev-*\"",
-    "dev-next": "next dev",
+    "dev-next": "next dev --experimental-https",
     "dev-codegen": "dotenv -e .env.local -- pnpm codegen -w",
     "codegen": "dotenv -e .env.local -- gql-gen --errors-only --config codegen.ts",
     "build": "pnpm run codegen && next build",
