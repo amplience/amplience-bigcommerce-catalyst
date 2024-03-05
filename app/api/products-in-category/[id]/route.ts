@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import { getCategory } from '~/client/queries/get-category';
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   const { id } = params;
 
   if (id) {
-
     const categoryId = Number(id);
     const cat = await getCategory({
       categoryId,
     });
-    let products = cat?.products.items;
+    const products = cat?.products.items;
 
     return NextResponse.json(products);
   }

@@ -1,17 +1,10 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable no-cond-assign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-/* eslint-disable complexity */
-import { AmplienceContentItem } from '~/amplience-client';
-
-import { AmplienceImage, ImageFormat, ImageTransformations } from './image.types';
+import {
+  AmplienceImage,
+  ImageFormat,
+  ImageTransformations,
+  ImageTransformationsParams,
+} from './image.types';
 
 const avifMaxPixels = 2500000;
 
@@ -132,7 +125,7 @@ export function getImageURL(
     sat,
     bri,
     crop,
-    templates,
+    templates = [],
     strip,
     quality,
   } = modifiedTransformations;
@@ -153,10 +146,8 @@ export function getImageURL(
     url = url.split('?')[0] as string;
   }
 
-  const query: string[] = [];
-
   // Get parameters from Transformations
-  const params: any = {
+  const params: ImageTransformationsParams = {
     w: width,
     h: height,
     sm: scaleMode,
@@ -166,7 +157,7 @@ export function getImageURL(
     fliph,
     flipv,
     rotate: rot,
-    hue: hue ? (hue * 100) / 180 : null,
+    hue: hue ? (hue * 100) / 180 : undefined,
     sat,
     bri,
     strip,
@@ -175,34 +166,37 @@ export function getImageURL(
 
   // Re-add existing parameters from URL
   const regex = /[?&]([^=#]+)=([^&#]*)/g;
-  let match;
+  const matches = [...url.matchAll(regex)];
 
-  while ((match = regex.exec(url))) {
-    if (params[match[1]!] === undefined || params[match[1]!] == null) params[match[1]!] = match[2];
-  }
+  matches.forEach(([key, value]) => {
+    if (key && value && params[key as keyof ImageTransformationsParams]) {
+      (params[key as keyof ImageTransformationsParams] as string) = value;
+    }
+  });
+
+  const query: string[] = [];
 
   // Add all parameters to query
-  for (const param of Object.keys(params)) {
-    const value = params[param];
-
-    if (value !== undefined && value !== null && value !== 0) {
-      query.push(`${param}=${value}`);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== null && value !== undefined) {
+      query.push(`${key}=${String(value)}`);
     }
-  }
+  });
 
   if (poi && poi.x !== -1 && poi.y !== -1) {
     query.push(`poi=${poi.x},${poi.y},0.01,0.01`);
   }
 
-  if (crop && crop.length === 4 && crop.filter((x) => x !== 0).length > 0) {
-    query.push(`crop=${crop[0]},${crop[1]},${crop[2]},${crop[3]}`);
+  // add crop to query if exists
+  const [x = 0, y = 0, w = 0, h = 0] = Array.isArray(crop) && crop.length === 4 ? crop : [];
+
+  if ([x, y, w, h].some((value) => value > 0)) {
+    query.push(`crop=${x},${y},${w},${h}`);
   }
 
-  if (templates) {
-    for (const template of templates) {
-      query.push(`$${template}$`);
-    }
-  }
+  templates.forEach((template) => {
+    query.push(`$${template}$`);
+  });
 
   // Add format and quality
   query.push(`fmt=${format}`);
@@ -219,17 +213,12 @@ export function getImageURL(
     url = url.split('?')[0] as string;
   }
 
-  url += `?${query.join('&')}`;
-
   // Add the additional DI Params
   if (diParams) {
-    // check to add an ampersand first
-    if (diParams.charAt(0) !== '&') {
-      diParams = `&${diParams}`;
-    }
-
-    url += diParams;
+    query.push(diParams);
   }
+
+  url += `?${query.join('&')}`;
 
   return url;
 }
@@ -245,7 +234,7 @@ export const buildSrcUrl = ({
 }: {
   width?: number;
   poiAspect?: string;
-  image: AmplienceContentItem;
+  image: AmplienceImage;
   seoText: string;
   display: string;
   query: string;

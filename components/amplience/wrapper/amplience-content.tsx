@@ -1,7 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable react/jsx-no-useless-fragment */
 import { AmplienceContentItem } from '~/amplience-client';
 
 import CuratedProductGrid from '../curated-product-grid/curated-product-grid';
@@ -11,9 +7,12 @@ import Image from '../image/image';
 import SimpleBanner from '../simple-banner/simple-banner';
 import Text from '../text/text';
 
-const COMPONENT_MAPPING: {
-  [key: string]: React.FC<any>;
-} = {
+interface ComponentMapType {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: (...args: any) => any;
+}
+
+const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/image': Image,
   'https://demostore.amplience.com/content/text': Text,
   'https://demostore.amplience.com/content/simple-banner': SimpleBanner,
@@ -34,21 +33,17 @@ const MappingNotFound = (content: AmplienceContentItem) => {
 };
 
 export interface AmplienceContentProps {
-  content: AmplienceContentItem;
+  content?: AmplienceContentItem;
 }
 
 // Wrapper component maps Amplience components based on content schema
-
 const AmplienceContent = ({ content }: AmplienceContentProps) => {
-  const contentSchema = content._meta?.schema;
+  // eslint-disable-next-line no-underscore-dangle
+  const contentSchema = content?._meta?.schema || '';
 
   const Component = COMPONENT_MAPPING[contentSchema] ?? MappingNotFound;
 
-  return (
-    <>
-      <Component {...content} />
-    </>
-  );
+  return <Component {...content} />;
 };
 
 export default AmplienceContent;

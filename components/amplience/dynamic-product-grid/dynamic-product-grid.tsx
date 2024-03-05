@@ -1,8 +1,8 @@
 'use client';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { useEffect, useState } from 'react';
+
+import { Product } from '~/components/product-card';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
 interface DynamicProductGridProps {
@@ -10,21 +10,22 @@ interface DynamicProductGridProps {
   category: string;
 }
 
-const DynamicProductGrid = ({ limit, category }: DynamicProductGridProps) => {
-  const hostname = `http://localhost:3000`;
-  const [hydratedProducts, setHydratedProducts] = useState<any[]>([]);
+const DynamicProductGrid = ({ limit = 10, category }: DynamicProductGridProps) => {
+  const [hydratedProducts, setHydratedProducts] = useState<Array<Partial<Product>>>([]);
 
   useEffect(() => {
-      const load = async () => {
+    const load = async () => {
       if (category) {
-        let prods = await fetch(`${hostname}/api/products-in-category/${category}`).then((res) => res.json());
-        if (limit) {
-          prods = prods.slice(0, limit);
-        }
-        setHydratedProducts(prods);
+        const response = await fetch(`/api/products-in-category/${category}`);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const allProducts = await response.json();
+        const products = Array.isArray(allProducts) ? allProducts.slice(0, limit) : [];
+
+        setHydratedProducts(products);
       }
-    }
-    load();
+    };
+
+    void load();
   }, [category, limit]);
 
   return (

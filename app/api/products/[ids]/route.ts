@@ -6,11 +6,12 @@ export const GET = async (request: NextRequest, { params }: { params: { ids: str
   const { ids } = params;
 
   if (ids) {
-    const productIds = ids.split(',').map(item => Number.parseInt(item))
+    const productIds = ids.split(',').map((item) => Number.parseInt(item, 10));
     const products = await getProducts({
-      productIds: productIds,
-      first: productIds.length
+      productIds,
+      first: productIds.length,
     });
+
     return NextResponse.json(products);
   }
 
