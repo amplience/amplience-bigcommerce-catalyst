@@ -16,6 +16,7 @@ The documentation starting here below is 'as-is' from BigCommerce. For Amplience
 ### 🏁 Quick Start
 
 - [Getting Started](./docs/amplience/getting-started.md)
+- [Deploying to Vercel](./docs/amplience/deploying-to-vercel.md)
 
 ### ⚙️ Core Functionalities
 
