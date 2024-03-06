@@ -64,3 +64,20 @@ export interface ImageTransformations {
 
   templates?: string[];
 }
+
+export interface ImageTransformationsParams {
+  w?: number;
+  h?: number;
+  sm?: ImageScaleMode;
+  scaleFit?: ImageScaleFit;
+  aspect?: string;
+  upscale?: boolean;
+  fliph?: boolean;
+  flipv?: boolean;
+  rotate?: number;
+  hue?: number;
+  sat?: number;
+  bri?: number;
+  strip?: boolean;
+  qlt?: number;
+}

@@ -1,4 +1,4 @@
-import { forwardRef, LegacyRef } from 'react';
+import { forwardRef, Ref } from 'react';
 
 import AdaptiveImage, { type AdaptiveImageProps } from './adaptive-image';
 import AdaptiveImageSource from './adaptive-image-source';
@@ -41,7 +41,7 @@ const DefaultAdaptiveImage = ({ imageRef, ...props }: DefaultAdaptiveImageProps)
 };
 
 const DefaultAdaptiveImageRef = forwardRef(
-  (props: AdaptiveImageProps, ref: LegacyRef<HTMLImageElement>) => (
+  (props: AdaptiveImageProps, ref: Ref<HTMLImageElement>) => (
     <DefaultAdaptiveImage imageRef={ref} {...props} />
   ),
 );

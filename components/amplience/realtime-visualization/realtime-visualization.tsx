@@ -11,7 +11,7 @@ import {
 import AmplienceContent from '../wrapper/amplience-content';
 
 export interface RealtimeVisualizationProps {
-  content: AmplienceContentItem;
+  content?: AmplienceContentItem;
 }
 
 export default function RealtimeVisualization({ content }: RealtimeVisualizationProps) {

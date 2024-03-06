@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-import { createContext, forwardRef, LegacyRef, type MutableRefObject, type ReactNode } from 'react';
+import { createContext, ForwardedRef, forwardRef, type ReactNode, Ref } from 'react';
 
 import { type AmplienceImage, type ImageTransformations } from '../image/image.types';
 import { getImageURL } from '../image/image.utils';
@@ -18,9 +15,9 @@ interface ContextState {
 export const AdaptiveImageContext = createContext<ContextState | null>(null);
 
 export interface AdaptiveImageProps {
-  image: AmplienceImage;
+  image?: AmplienceImage;
   transformations?: ImageTransformations;
-  imageRef?: LegacyRef<HTMLImageElement>;
+  imageRef?: Ref<HTMLImageElement>;
   children?: ReactNode[];
   imageAltText?: string;
   diParams?: string;
@@ -58,10 +55,12 @@ const AdaptiveImage = ({
   );
 };
 
-const AdaptiveImageRef = forwardRef((props: AdaptiveImageProps, ref) => (
-  <AdaptiveImage {...props} imageRef={ref as MutableRefObject<HTMLImageElement>}>
-    {props.children}
-  </AdaptiveImage>
-));
+const AdaptiveImageRef = forwardRef(
+  (props: AdaptiveImageProps, ref: ForwardedRef<HTMLImageElement>) => (
+    <AdaptiveImage {...props} imageRef={ref}>
+      {props.children}
+    </AdaptiveImage>
+  ),
+);
 
 export default AdaptiveImageRef;
