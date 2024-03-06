@@ -22,8 +22,8 @@ AMPLIENCE_FLEXIBLE_SLOT_KEY=XXXX
 
 ![Vercel build 2](./media/vercel-build-2.png)
 
-![Vercel build 1](./media/vercel-deployed.png)
+![Vercel Deployed](./media/vercel-deployed.png)
 
-![Vercel build 2](./media/vercel-dashboard.png)
+![Vercel Dashboard](./media/vercel-dashboard.png)
 
-![Vercel build 2](./media/vercel-deployed-url.png)
+![Vercel Deployed URL](./media/vercel-deployed-url.png)
