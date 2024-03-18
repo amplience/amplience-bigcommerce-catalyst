@@ -132,8 +132,8 @@ const SimpleBanner = ({
             textAlign: textPositionHorizontal,
           }}
         >
-          <h1 className="mt-0">{bannerText?.header}</h1>
-          <h2>{bannerText?.subheader}</h2>
+          <h1 className="mt-0 mb-8 text-3xl font-black lg:text-5xl">{bannerText?.header}</h1>
+          <h2 className="text-2xl font-black lg:text-3xl">{bannerText?.subheader}</h2>
           <p style={{ marginBottom: '20px' }}>{bannerText?.description}</p>
           {Boolean(ctaSettings && ctaSettings.buttonText) && (
             <LinkWithQuery
