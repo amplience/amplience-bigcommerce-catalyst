@@ -1,15 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
-export interface AmplienceContentItem {
-  [key: string]: any;
-  _meta?: {
-    schema?: string;
-    name?: string;
-    deliveryId?: string;
-    deliveryKey?: string;
-  };
-}
+import fetchAdapter from '@haverstack/axios-fetch-adapter';
+import { ContentClient } from 'dc-delivery-sdk-js';
 
 interface AmplienceClientOptions {
   hubName?: string;
@@ -18,36 +8,14 @@ interface AmplienceClientOptions {
 }
 
 class AmplienceClient {
-  url: string;
-  hubName: string;
-  stagingEnvironment: string;
-  params: { depth: string; format: string; locale: string };
+  client: ContentClient;
   constructor({ hubName, stagingEnvironment, locale }: AmplienceClientOptions) {
-    const hub = hubName || process.env.AMPLIENCE_HUBNAME || '';
-    const host = stagingEnvironment || `${hub}.cdn.content.amplience.net`;
-
-    this.url = `https://${host}/content`;
-    this.hubName = hub;
-    this.stagingEnvironment = stagingEnvironment || '';
-    this.params = { depth: 'all', format: 'inlined', locale: locale || 'en-US' };
-  }
-
-  async getContentItemById(id: string) {
-    const path = `id/${id}`;
-    const qs = new URLSearchParams(this.params).toString();
-    const response = await fetch(`${this.url}/${path}?${qs}`);
-    const json: { content: AmplienceContentItem } = await response.json();
-
-    return json.content;
-  }
-
-  async getContentItemByKey(id: string) {
-    const path = `key/${id}`;
-    const qs = new URLSearchParams(this.params).toString();
-    const response = await fetch(`${this.url}/${path}?${qs}`);
-    const json: { content: AmplienceContentItem } = await response.json();
-
-    return json.content;
+    this.client = new ContentClient({
+      hubName: hubName || String(process.env.AMPLIENCE_HUBNAME),
+      stagingEnvironment: stagingEnvironment || '',
+      locale,
+      adaptor: fetchAdapter,
+    });
   }
 }
 
@@ -56,5 +24,5 @@ export const createAmplienceClient = ({
   stagingEnvironment,
   locale,
 }: AmplienceClientOptions) => {
-  return new AmplienceClient({ hubName, stagingEnvironment, locale });
+  return new AmplienceClient({ hubName, stagingEnvironment, locale }).client;
 };

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
 import { createAmplienceClient } from '~/amplience-client';
@@ -23,9 +25,9 @@ export default async function Home({ searchParams }: HomeProps) {
     await Promise.all([
       getBestSellingProducts({ imageWidth: 500, imageHeight: 500 }),
       getFeaturedProducts({ imageWidth: 500, imageHeight: 500 }),
-      amplienceClient.getContentItemById(SIMPLE_BANNER_ID),
-      amplienceClient.getContentItemByKey(SIMPLE_BANNER_KEY),
-      amplienceClient.getContentItemByKey(FLEXIBLE_SLOT_KEY),
+      (await amplienceClient.getContentItemById(SIMPLE_BANNER_ID)).toJSON() as DefaultContentBody,
+      (await amplienceClient.getContentItemByKey(SIMPLE_BANNER_KEY)).toJSON() as DefaultContentBody,
+      (await amplienceClient.getContentItemByKey(FLEXIBLE_SLOT_KEY)).toJSON() as DefaultContentBody,
     ]);
 
   return (
