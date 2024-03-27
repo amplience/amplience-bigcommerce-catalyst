@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
 import { createAmplienceClient } from '~/amplience-client';
@@ -12,7 +14,9 @@ export default async function Visualization({ searchParams }: VisualizationProps
   const amplienceClientOptions = clientOptionsMapper(searchParams);
   const amplienceClient = createAmplienceClient(amplienceClientOptions);
   const { contentId } = searchParams;
-  const content = await amplienceClient.getContentItemById(contentId);
+  const content = (
+    await amplienceClient.getContentItemById(contentId)
+  ).toJSON() as DefaultContentBody;
 
   return (
     <div>
