@@ -1,4 +1,4 @@
-import { AmplienceContentItem } from '~/amplience-client';
+import { ContentItem } from 'dc-delivery-sdk-js';
 
 import CuratedProductGrid from '../curated-product-grid/curated-product-grid';
 import DynamicProductGrid from '../dynamic-product-grid/dynamic-product-grid';
@@ -22,7 +22,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
 };
 
-const MappingNotFound = (content: AmplienceContentItem) => {
+const MappingNotFound = (content: ContentItem) => {
   return (
     <pre>
       <code className="block break-words text-xs md:text-sm">
@@ -33,13 +33,14 @@ const MappingNotFound = (content: AmplienceContentItem) => {
 };
 
 export interface AmplienceContentProps {
-  content?: AmplienceContentItem;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content?: Record<string, any>;
 }
 
 // Wrapper component maps Amplience components based on content schema
 const AmplienceContent = ({ content }: AmplienceContentProps) => {
-  // eslint-disable-next-line no-underscore-dangle
-  const contentSchema = content?._meta?.schema || '';
+  // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  const contentSchema: string = content?._meta?.schema || '';
 
   const Component = COMPONENT_MAPPING[contentSchema] ?? MappingNotFound;
 
