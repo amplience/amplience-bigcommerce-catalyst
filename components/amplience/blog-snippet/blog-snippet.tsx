@@ -75,13 +75,16 @@ const BlogSnippet = ({
           {blogdate ? <h4 className="mb-2 text-gray-500">{blogdate}</h4> : null}
         </div>
 
-        {description ? <h2 className="text-xl font-bold lg:text-2xl">{description}</h2> : null}
+        {description ? <h2 className="mb-4 text-xl font-bold lg:text-2xl">{description}</h2> : null}
 
         {cta ? (
           <CallToAction
             key={cta?.label}
             href={buildCTAUrl(cta)}
-            style={{ marginTop: '15px !important', marginRight: '15px !important' }}
+            style={{
+              marginTop: '15px !important',
+              marginRight: '15px !important',
+            }}
             variant={'contained'}
           >
             {cta?.label}
