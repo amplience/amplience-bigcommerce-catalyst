@@ -9,6 +9,8 @@ import Text from '../text/text';
 import Card from '../card/card';
 import CardList from '../card-list/card-list';
 import RichText from '../rich-text/rich-text';
+import Blog from '../blog/blog';
+import BlogSnippet from '../blog-snippet/blog-snippet';
 
 interface ComponentMapType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +28,8 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/card': Card,
   'https://demostore.amplience.com/content/card-list': CardList,
   'https://demostore.amplience.com/content/rich-text': RichText,
+  'https://demostore.amplience.com/content/blog': Blog,
+  'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
 };
 
 const MappingNotFound = (content: AmplienceContentItem) => {
