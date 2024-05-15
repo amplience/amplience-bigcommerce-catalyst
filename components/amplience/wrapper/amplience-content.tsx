@@ -6,6 +6,8 @@ import FlexibleSlot from '../flexible-slot/flexible-slot';
 import Image from '../image/image';
 import SimpleBanner from '../simple-banner/simple-banner';
 import Text from '../text/text';
+import Card from '../card/card';
+import CardList from '../card-list/card-list';
 
 interface ComponentMapType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,6 +22,8 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/slots/flexible': FlexibleSlot,
   'https://demostore.amplience.com/content/curated-product-grid': CuratedProductGrid,
   'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
+  'https://demostore.amplience.com/content/card': Card,
+  'https://demostore.amplience.com/content/card-list': CardList,
 };
 
 const MappingNotFound = (content: AmplienceContentItem) => {

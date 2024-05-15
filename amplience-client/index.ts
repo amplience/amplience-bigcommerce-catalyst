@@ -1,6 +1,10 @@
 import fetchAdapter from '@haverstack/axios-fetch-adapter';
 import { ContentClient } from 'dc-delivery-sdk-js';
 
+export interface AmplienceContentItem {
+  [key: string]: any;
+}
+
 interface AmplienceClientOptions {
   hubName?: string;
   stagingEnvironment?: string;
