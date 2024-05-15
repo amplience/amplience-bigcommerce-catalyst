@@ -69,7 +69,7 @@ const BlogSnippet = ({
 
       <div className="amp-dc-snippet-info-wrap">
         {category?.length ? <small>{category.join(', ')}</small> : null}
-        {title ? <h1 className="mb-8 text-3xl font-black lg:text-5xl">{title}</h1> : null}
+        {title ? <h1 className="mb-4 mt-4 text-3xl font-black lg:text-5xl">{title}</h1> : null}
         <div className="amp-dc-snippet-info-wrap__description">
           {author ? <h4 className="mb-2 text-gray-500">{author}</h4> : null}
           {blogdate ? <h4 className="mb-2 text-gray-500">{blogdate}</h4> : null}
