@@ -8,6 +8,7 @@ import SimpleBanner from '../simple-banner/simple-banner';
 import Text from '../text/text';
 import Card from '../card/card';
 import CardList from '../card-list/card-list';
+import RichText from '../rich-text/rich-text';
 
 interface ComponentMapType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,6 +25,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
   'https://demostore.amplience.com/content/card': Card,
   'https://demostore.amplience.com/content/card-list': CardList,
+  'https://demostore.amplience.com/content/rich-text': RichText,
 };
 
 const MappingNotFound = (content: AmplienceContentItem) => {
