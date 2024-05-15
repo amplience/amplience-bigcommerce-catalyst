@@ -13,8 +13,8 @@ const CardList = ({ header, cards }: CardListProps) => {
       {header && <h2>{header}</h2>}
       {cards && (
         <div className="space-x-4 sm:flex">
-          {cards.map((card: any) => {
-            return <Card key={Math.random().toString(36).substr(2, 9)} {...card} />;
+          {cards.map((card: any, index: number) => {
+            return <Card key={index} {...card} />;
           })}
         </div>
       )}
