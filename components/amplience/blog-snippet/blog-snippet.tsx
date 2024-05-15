@@ -75,7 +75,7 @@ const BlogSnippet = ({
           {blogdate ? <h4 className="mb-2 text-gray-500">{blogdate}</h4> : null}
         </div>
 
-        {description ? <h2>{description}</h2> : null}
+        {description ? <h2 className="text-xl font-bold lg:text-2xl">{description}</h2> : null}
 
         {cta ? (
           <CallToAction
