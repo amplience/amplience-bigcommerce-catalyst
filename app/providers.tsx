@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 
 import { CompareProductsProvider } from '~/app/contexts/compare-products-context';
 
-import { RealtimeVisualizationProvider } from './contexts/compare-products-context/amplience/realtime-visualization-context';
+import { RealtimeVisualizationProvider } from './contexts/amplience/realtime-visualization-context';
 
 export function Providers({ children }: PropsWithChildren) {
   return (

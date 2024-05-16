@@ -2,22 +2,21 @@
 
 import { useCallback, useState } from 'react';
 
-import { AmplienceContentItem } from '~/amplience-client';
 import {
   useInitialRealtimeContent,
   useRealtimeVisualization,
-} from '~/app/contexts/compare-products-context/amplience/realtime-visualization-context';
+} from '~/app/contexts/amplience/realtime-visualization-context';
 
 import AmplienceContent from '../wrapper/amplience-content';
 
 export interface RealtimeVisualizationProps {
-  content?: AmplienceContentItem;
+  content?: Record<string, unknown>;
 }
 
 export default function RealtimeVisualization({ content }: RealtimeVisualizationProps) {
-  const [contentItem, setContentItem] = useState<AmplienceContentItem | undefined>(content);
+  const [contentItem, setContentItem] = useState<Record<string, unknown> | undefined>(content);
 
-  const updateRealtimeContent = useCallback((realtimeContent: AmplienceContentItem) => {
+  const updateRealtimeContent = useCallback((realtimeContent: Record<string, unknown>) => {
     setContentItem(realtimeContent);
   }, []);
 
