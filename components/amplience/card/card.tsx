@@ -86,8 +86,15 @@ const Card = ({ image, cardName, description, links }: CardProps) => {
               transformations={transformations}
             />
           </div>
-          {Boolean(cardName) && <h2 style={{ marginTop: 15, marginBottom: 15 }}>{cardName}</h2>}
-          {Boolean(description) && <p>{description}</p>}
+          {Boolean(cardName) && (
+            <h2
+              className="mb-4 mt-4 text-xl font-bold lg:text-2xl"
+              style={{ marginTop: 15, marginBottom: 15 }}
+            >
+              {cardName}
+            </h2>
+          )}
+          {Boolean(description) && <p className="mb-4">{description}</p>}
         </div>
         <div
           style={{
