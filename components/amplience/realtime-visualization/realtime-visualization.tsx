@@ -7,7 +7,7 @@ import { useCallback, useState } from 'react';
 import {
   useInitialRealtimeContent,
   useRealtimeVisualization,
-} from '~/app/contexts/compare-products-context/amplience/realtime-visualization-context';
+} from '~/app/contexts/amplience/realtime-visualization-context';
 
 import AmplienceContent from '../wrapper/amplience-content';
 
