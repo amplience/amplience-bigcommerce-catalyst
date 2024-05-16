@@ -1,21 +1,19 @@
-import { AmplienceContentItem } from '~/amplience-client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
+import Blog from '../blog/blog';
+import BlogSnippet from '../blog-snippet/blog-snippet';
+import Card from '../card/card';
+import CardList from '../card-list/card-list';
 import CuratedProductGrid from '../curated-product-grid/curated-product-grid';
 import DynamicProductGrid from '../dynamic-product-grid/dynamic-product-grid';
 import FlexibleSlot from '../flexible-slot/flexible-slot';
 import Image from '../image/image';
+import RichText from '../rich-text/rich-text';
 import SimpleBanner from '../simple-banner/simple-banner';
 import Text from '../text/text';
-import Card from '../card/card';
-import CardList from '../card-list/card-list';
-import RichText from '../rich-text/rich-text';
-import Blog from '../blog/blog';
-import BlogSnippet from '../blog-snippet/blog-snippet';
 
-interface ComponentMapType {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: (...args: any) => any;
-}
+type ComponentMapType = Record<string, (...args: any) => any>;
 
 const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/image': Image,
@@ -32,7 +30,7 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
 };
 
-const MappingNotFound = (content: AmplienceContentItem) => {
+const MappingNotFound = (content: DefaultContentBody) => {
   return (
     <pre>
       <code className="block break-words text-xs md:text-sm">
@@ -43,13 +41,13 @@ const MappingNotFound = (content: AmplienceContentItem) => {
 };
 
 export interface AmplienceContentProps {
-  content?: AmplienceContentItem;
+  content?: DefaultContentBody;
 }
 
 // Wrapper component maps Amplience components based on content schema
 const AmplienceContent = ({ content }: AmplienceContentProps) => {
   // eslint-disable-next-line no-underscore-dangle
-  const contentSchema = content?._meta?.schema || '';
+  const contentSchema = content?._meta.schema || '';
 
   const Component = COMPONENT_MAPPING[contentSchema] ?? MappingNotFound;
 

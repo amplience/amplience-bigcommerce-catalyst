@@ -1,12 +1,11 @@
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import { nanoid } from 'nanoid';
 import React from 'react';
-
-import { AmplienceContentItem } from '~/amplience-client';
 
 import AmplienceContent from '../wrapper/amplience-content';
 
 interface FlexibleSlotProps {
-  contentTypes: AmplienceContentItem[];
+  contentTypes: DefaultContentBody[];
 }
 
 const FlexibleSlot = ({ contentTypes = [] }: FlexibleSlotProps) => {

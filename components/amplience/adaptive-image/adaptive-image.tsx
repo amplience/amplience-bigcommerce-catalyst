@@ -7,9 +7,7 @@ interface ContextState {
   image: AmplienceImage;
   transformations?: ImageTransformations;
   diParams?: string;
-  srcset?: {
-    [factor: string]: ImageTransformations;
-  };
+  srcset?: Record<string, ImageTransformations>;
 }
 
 export const AdaptiveImageContext = createContext<ContextState | null>(null);

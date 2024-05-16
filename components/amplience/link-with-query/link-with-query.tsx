@@ -15,7 +15,7 @@ import { Link } from '~/components/link';
 const LinkWithQuery = ({
   href,
   ...props
-}: { href: Url; className: string } & PropsWithChildren) => {
+}: { href: Url; className?: string } & PropsWithChildren) => {
   const pathname = typeof href === 'object' ? href.pathname : href;
 
   const searchParams = useSearchParams();

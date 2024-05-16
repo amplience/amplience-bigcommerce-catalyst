@@ -1,22 +1,23 @@
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
-import { AmplienceContentItem } from '~/amplience-client';
+
 import AmplienceContent from '../wrapper/amplience-content';
 
 export interface BlogProps {
-  snippet: AmplienceContentItem;
-  contentTypes?: AmplienceContentItem[];
-  content: AmplienceContentItem;
+  snippet: DefaultContentBody;
+  contentTypes?: DefaultContentBody[];
+  content: DefaultContentBody;
 }
 
 const Blog = ({ snippet, content, contentTypes = [] }: BlogProps) => {
-  const Blog = (
+  const blog = (
     <div>
       <div className="mb-8">
         <AmplienceContent content={snippet} />
       </div>
       <div>
         <AmplienceContent content={content} />
-        {contentTypes.map((item: any, index: number) => (
+        {contentTypes.map((item: DefaultContentBody, index: number) => (
           <div key={index}>
             <AmplienceContent content={item} />
           </div>
@@ -25,7 +26,7 @@ const Blog = ({ snippet, content, contentTypes = [] }: BlogProps) => {
     </div>
   );
 
-  return Blog;
+  return blog;
 };
 
 export default Blog;

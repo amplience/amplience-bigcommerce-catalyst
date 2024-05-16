@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
-import { AmplienceContentItem } from '~/amplience-client';
+
 import Card from '../card/card';
 
 interface CardListProps {
   header?: string;
-  cards?: AmplienceContentItem[];
+  cards?: DefaultContentBody[];
 }
 
 const CardList = ({ header, cards }: CardListProps) => {
   return (
     <div style={{ marginTop: 30, marginBottom: 30 }}>
-      {header && <h2>{header}</h2>}
+      {Boolean(header) && <h2>{header}</h2>}
       {cards && (
         <div className="space-x-4 sm:flex">
           {cards.map((card: any, index: number) => {

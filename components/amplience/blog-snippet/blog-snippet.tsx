@@ -1,33 +1,41 @@
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
-import { AmplienceContentItem } from '~/amplience-client';
-import AmplienceContent from '../wrapper/amplience-content';
-import CallToAction from '../call-to-action/call-to-action';
-import NextHead from 'next/head';
-import { AmplienceImage } from '../image/image.types';
-import { getImageURL } from '../image/image.utils';
 
-export type BlogSnippetProps = {
-  image: AmplienceContentItem;
+import CallToAction from '../call-to-action/call-to-action';
+import AmplienceContent from '../wrapper/amplience-content';
+
+export interface CallToAction {
+  type: string;
+  value: string;
+  label: string;
+}
+
+export interface BlogSnippetProps {
+  image: DefaultContentBody;
   title: string;
   blogdate: string;
   author: string;
-  category: string[];
+  category?: string[];
   description: string;
-  cta: any;
-  tags: any[];
+  cta?: CallToAction;
+  tags: string[];
   keywords: string;
-};
+}
 
-const buildCTAUrl = (cta: any) => {
+const buildCTAUrl = (cta: CallToAction) => {
   switch (cta.type) {
     case 'URL':
       return cta.value;
+
     case 'Category ID':
       return `/category/${cta.value}`;
+
     case 'Product SKU':
       return `/product/${cta.value}`;
+
     case 'Page ID':
       return `/${cta.value}`;
+
     default:
       return '#';
   }
@@ -41,24 +49,9 @@ const BlogSnippet = ({
   category,
   description,
   cta,
-  keywords,
 }: BlogSnippetProps) => {
   return (
     <>
-      <NextHead>
-        <title>{title || 'Amplience Retail Storefront Website'}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title || 'Amplience Retail Storefront Website'} />
-        <meta property="og:description" content={description} />
-        <meta name="keywords" content={keywords} />
-        <meta property="og:image" content={getImageURL(image.image as AmplienceImage)} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@amplience" />
-        <meta name="twitter:creator" content="@amplience" />
-        <meta name="twitter:title" content={title || 'Amplience Retail Storefront Website'} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={getImageURL(image.image as AmplienceImage)} />
-      </NextHead>
       <div className="amp-dc-banner js_dc_banner">
         <div className="amp-dc-banner-wrapper">
           <div className="amp-dc-banner-pic-wrap">
@@ -79,15 +72,15 @@ const BlogSnippet = ({
 
         {cta ? (
           <CallToAction
-            key={cta?.label}
             href={buildCTAUrl(cta)}
+            key={cta.label}
             style={{
               marginTop: '15px !important',
               marginRight: '15px !important',
             }}
-            variant={'contained'}
+            variant="contained"
           >
-            {cta?.label}
+            {cta.label}
           </CallToAction>
         ) : null}
       </div>

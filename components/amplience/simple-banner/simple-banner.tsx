@@ -109,7 +109,7 @@ const SimpleBanner = ({
       <div
         className="bg-[#ccc]"
         style={{
-          display: `${imageLoading ? 'none' : 'block'}`,
+          display: imageLoading ? 'none' : 'block',
         }}
       >
         <DefaultAdaptiveImageRef
@@ -132,10 +132,10 @@ const SimpleBanner = ({
             textAlign: textPositionHorizontal,
           }}
         >
-          <h1 className="mt-0 mb-8 text-3xl font-black lg:text-5xl">{bannerText?.header}</h1>
+          <h1 className="mb-8 mt-0 text-3xl font-black lg:text-5xl">{bannerText?.header}</h1>
           <h2 className="text-2xl font-black lg:text-3xl">{bannerText?.subheader}</h2>
           <p style={{ marginBottom: '20px' }}>{bannerText?.description}</p>
-          {Boolean(ctaSettings && ctaSettings.buttonText) && (
+          {Boolean(ctaSettings?.buttonText) && (
             <LinkWithQuery
               className="font mt-4 rounded bg-[#333] px-3.5 py-2.5 text-xs font-bold text-[#eee] no-underline hover:bg-[#eee] hover:text-[#333] hover:no-underline"
               href={ctaSettings?.linkUrl || '#'}
