@@ -10,7 +10,7 @@ export enum ImageFormat {
   PNG = 'png',
   GIF = 'gif',
   AVIF = 'avif',
-  DEFAULT = 'default',
+  DEFAULT = 'auto',
 }
 
 export enum ImageScaleMode {

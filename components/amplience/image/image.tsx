@@ -1,4 +1,4 @@
-import { AmplienceContentItem } from '~/amplience-client';
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
 import { AmplienceImage } from './image.types';
 import { buildSrcUrl } from './image.utils';
@@ -11,7 +11,7 @@ type ImageProps = {
   di?: string;
   seoText?: string;
   display?: string;
-} & AmplienceContentItem;
+} & DefaultContentBody;
 
 interface SourceProps {
   minWidth?: number;

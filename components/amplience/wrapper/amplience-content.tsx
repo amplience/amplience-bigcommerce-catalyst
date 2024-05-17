@@ -1,16 +1,19 @@
-import { ContentItem } from 'dc-delivery-sdk-js';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
+import Blog from '../blog/blog';
+import BlogSnippet from '../blog-snippet/blog-snippet';
+import Card from '../card/card';
+import CardList from '../card-list/card-list';
 import CuratedProductGrid from '../curated-product-grid/curated-product-grid';
 import DynamicProductGrid from '../dynamic-product-grid/dynamic-product-grid';
 import FlexibleSlot from '../flexible-slot/flexible-slot';
 import Image from '../image/image';
+import RichText from '../rich-text/rich-text';
 import SimpleBanner from '../simple-banner/simple-banner';
 import Text from '../text/text';
 
-interface ComponentMapType {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: (...args: any) => any;
-}
+type ComponentMapType = Record<string, (...args: any) => any>;
 
 const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/image': Image,
@@ -20,9 +23,14 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/slots/flexible': FlexibleSlot,
   'https://demostore.amplience.com/content/curated-product-grid': CuratedProductGrid,
   'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
+  'https://demostore.amplience.com/content/card': Card,
+  'https://demostore.amplience.com/content/card-list': CardList,
+  'https://demostore.amplience.com/content/rich-text': RichText,
+  'https://demostore.amplience.com/content/blog': Blog,
+  'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
 };
 
-const MappingNotFound = (content: ContentItem) => {
+const MappingNotFound = (content: DefaultContentBody) => {
   return (
     <pre>
       <code className="block break-words text-xs md:text-sm">
@@ -33,14 +41,13 @@ const MappingNotFound = (content: ContentItem) => {
 };
 
 export interface AmplienceContentProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content?: Record<string, any>;
+  content?: DefaultContentBody;
 }
 
 // Wrapper component maps Amplience components based on content schema
 const AmplienceContent = ({ content }: AmplienceContentProps) => {
-  // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const contentSchema: string = content?._meta?.schema || '';
+  // eslint-disable-next-line no-underscore-dangle
+  const contentSchema = content?._meta.schema || '';
 
   const Component = COMPONENT_MAPPING[contentSchema] ?? MappingNotFound;
 

@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
 'use client';
 
+import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import { useCallback, useState } from 'react';
 
 import {
@@ -10,14 +12,14 @@ import {
 import AmplienceContent from '../wrapper/amplience-content';
 
 export interface RealtimeVisualizationProps {
-  content?: Record<string, unknown>;
+  content?: DefaultContentBody;
 }
 
 export default function RealtimeVisualization({ content }: RealtimeVisualizationProps) {
-  const [contentItem, setContentItem] = useState<Record<string, unknown> | undefined>(content);
+  const [contentItem, setContentItem] = useState<DefaultContentBody | undefined>(content);
 
   const updateRealtimeContent = useCallback((realtimeContent: Record<string, unknown>) => {
-    setContentItem(realtimeContent);
+    setContentItem(realtimeContent as DefaultContentBody);
   }, []);
 
   useInitialRealtimeContent(updateRealtimeContent);
