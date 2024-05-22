@@ -11,8 +11,8 @@ interface FlexibleSlotProps {
 const FlexibleSlot = ({ contentTypes = [] }: FlexibleSlotProps) => {
   return (
     <>
-      {contentTypes.map((content) => {
-        return <AmplienceContent content={content} key={nanoid()} />;
+      {contentTypes.map((content, index) => {
+        return <AmplienceContent content={content} key={index} />;
       })}
     </>
   );

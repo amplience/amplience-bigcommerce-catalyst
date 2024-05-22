@@ -19,7 +19,6 @@ const COMPONENT_MAPPING: ComponentMapType = {
   'https://demostore.amplience.com/content/image': Image,
   'https://demostore.amplience.com/content/text': Text,
   'https://demostore.amplience.com/content/simple-banner': SimpleBanner,
-  'https://demostore.amplience.com/content/simple-localized-banner': SimpleBanner,
   'https://demostore.amplience.com/slots/flexible': FlexibleSlot,
   'https://demostore.amplience.com/content/curated-product-grid': CuratedProductGrid,
   'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
@@ -32,11 +31,29 @@ const COMPONENT_MAPPING: ComponentMapType = {
 
 const MappingNotFound = (content: DefaultContentBody) => {
   return (
-    <pre>
-      <code className="block break-words text-xs md:text-sm">
-        {JSON.stringify(content, null, 2)}
-      </code>
-    </pre>
+    <div
+      style={{
+        height: '400px',
+        backgroundColor: '#eee',
+        border: '1px solid black',
+        padding: '15px',
+        margin: '10px',
+      }}
+    >
+      <h3 className="text-xl font-black">{content._meta?.name}</h3>
+      <h4 className="italic">{content._meta?.deliveryId}</h4>
+      <p className="mb-4 mt-4">No render available for this component. Showing JSON content.</p>
+      <pre
+        style={{
+          maxHeight: '250px',
+          overflowY: 'scroll',
+        }}
+      >
+        <code className="block break-words text-xs md:text-sm">
+          {JSON.stringify(content, null, 2)}
+        </code>
+      </pre>
+    </div>
   );
 };
 

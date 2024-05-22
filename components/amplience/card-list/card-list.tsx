@@ -16,7 +16,15 @@ const CardList = ({ header, cards }: CardListProps) => {
       {cards && (
         <div className="space-x-4 sm:flex">
           {cards.map((card: any, index: number) => {
-            return <Card key={index} {...card} />;
+            return (
+              <Card
+                style={{
+                  width: `calc(100%/${cards.length})`,
+                }}
+                key={index}
+                {...card}
+              />
+            );
           })}
         </div>
       )}
