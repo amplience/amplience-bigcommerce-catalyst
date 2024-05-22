@@ -4,7 +4,10 @@ Main Amplience configuration is set through an environment variable. You can set
 
 ```
 AMPLIENCE_HUBNAME=<dc hubname>
+AMPLIENCE_FLEXIBLE_SLOT_KEY=<slot key for homepage>
 ```
+
+Slot key is usually `homepage` in the case of Demostore automation.
 
 If this installation of Catalyst was created using the catalyst-storefront CLI, you should already be connected to a store and can get started immediately by running:
 
