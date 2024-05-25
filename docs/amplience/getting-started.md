@@ -80,6 +80,17 @@ From there you can update the Installation Parameters of the eComm Toolkit exten
 
 ### Content Types visualisation URL
 
+You wil need to update / add a new visualisation URL to the following Content Types:
+- Blog
+- Card
+- Card List
+- Image
+- Text
+- Simple Banner
+- Flexible Slot
+
+The URL to use is the following: 
+
 ### Preview URL
 
 ## Installing and running the project
