@@ -100,7 +100,8 @@ Here is the list of Content Types to update:
 - Text
 
 The URL to use is the following:
-`https://localhost:3000/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}`
+
+- `https://localhost:3000/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}`
 
 ### Preview URL
 
