@@ -26,10 +26,10 @@ You can generate the customer impersonation token by running:
 
 ```bash
 curl --request POST \
-  --url 'https://api.bigcommerce.com/stores/[store hash]/v3/storefront/api-token-customer-impersonation' \
+  --url 'https://api.bigcommerce.com/stores/[store_hash]/v3/storefront/api-token-customer-impersonation' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
-  --header 'X-Auth-Token: <access token>' \
+  --header 'X-Auth-Token: <access_token>' \
   --data '{"channel_id":1,"expires_at":1885635176}'
 ```
 
@@ -56,15 +56,15 @@ You can generate the API Token for eComm Toolkit by running:
 
 ```bash
 curl --request POST \
-  --url 'https://api.bigcommerce.com/stores/[store hash]/v3/storefront/api-token' \
+  --url 'https://api.bigcommerce.com/stores/[store_hash]/v3/storefront/api-token' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
-  --header 'X-Auth-Token: [access token]' \
+  --header 'X-Auth-Token: [access_token]' \
   --data '{"allowed_cors_origins":["https://ecomm-toolkit.extensions.content.amplience.net", "https://localhost:3000"],"channel_id":1,"expires_at":1885635176}'
 ```
 
 You will also need your default store Site ID, which is different than the Store Hash.
-You can go in your store and get the ID from the URL: `https://<site id>.mybigcommerce.com`
+You can go in your store and get the ID from the URL: `https://[site_id].mybigcommerce.com`
 
 From there you can update the Installation Parameters of the eComm Toolkit extension with the following:
 
@@ -72,8 +72,8 @@ From there you can update the Installation Parameters of the eComm Toolkit exten
 {
   "vendor": "bigcommerce-cors",
   "codec_params": {
-    "site_id": "<site id>",
-    "api_token": "<api token>"
+    "site_id": "<site_id>",
+    "api_token": "<api_token>"
   }
 }
 ```
