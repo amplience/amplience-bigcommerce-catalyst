@@ -87,10 +87,11 @@ You wil need to update / add a new visualisation URL to the following Content Ty
 - Card List
 - Curated Product Grid
 - Dynamic Product Grid
-- Image
-- Text
-- Simple Banner
 - Flexible Slot
+- Image
+- Rich Text
+- Simple Banner
+- Text
 
 The URL to use is the following:
 
