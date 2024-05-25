@@ -7,7 +7,7 @@ Main BigCommerce configuration is set through an environment variable. You can s
 | Environment variable                     | Description                                                                                                     |
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | AUTH_SECRET                              | Random string                                                                                                   |
-| BIGCOMMERCE_STORE_HASH                   | Store Hash, that you can find in the API path or admin URL: https://api.bigcommerce.com/stores/[store hash]/v3/ |
+| BIGCOMMERCE_STORE_HASH                   | Store Hash, that you can find in the API path or admin URL: https://api.bigcommerce.com/stores/[store_hash]/v3/ |
 | BIGCOMMERCE_ACCESS_TOKEN                 | Access Token, that you can get when creating a new set of credentials                                           |
 | BIGCOMMERCE_CUSTOMER_IMPERSONATION_TOKEN | Customer Impersonation Token, to be generated using the access token from the API credentials                   |
 | BIGCOMMERCE_CHANNEL_ID                   | Channell ID, default to 1                                                                                       |
