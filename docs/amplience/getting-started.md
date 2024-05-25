@@ -4,21 +4,34 @@
 
 Main BigCommerce configuration is set through an environment variable. You can set it locally in a `.env.local` file:
 
-```
-AUTH_SECRET=<random string>
-BIGCOMMERCE_STORE_HASH=<store hash>
-BIGCOMMERCE_ACCESS_TOKEN=<access token>
-BIGCOMMERCE_CUSTOMER_IMPERSONATION_TOKEN=<customer impersonation token>
-BIGCOMMERCE_CHANNEL_ID=1
-CLIENT_LOGGER=false
-ENABLE_ADMIN_ROUTE=true
-```
+| Environment variable                     | Description                                                                                                       |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| AUTH_SECRET                              | <random string>                                                                                                   |
+| BIGCOMMERCE_STORE_HASH                   | <store hash>, that you can find in the API path or admin URL: https://api.bigcommerce.com/stores/>store hash>/v3/ |
+| BIGCOMMERCE_ACCESS_TOKEN                 | <access token>, that you can get when creating a new set of credentials                                           |
+| BIGCOMMERCE_CUSTOMER_IMPERSONATION_TOKEN | <customer impersonation token>, to be generated using the access token from the API credentials                   |
+| BIGCOMMERCE_CHANNEL_ID                   | Channell ID, default to 1                                                                                         |
+| CLIENT_LOGGER                            | Client Logger, default to false                                                                                   |
+| ENABLE_ADMIN_ROUTE                       | Enable Admin Route, default to true                                                                               |
 
 You can follow the guide on the `dc-integration-middleware` project to generate your credentials: https://github.com/amplience/dc-integration-middleware/blob/main/docs/vendor/commerce/bigcommerce-cors.md
 
+> Note: you will need the `Manage Storefront API Tokens` and the `Manage Storefront API Customer Impersonation Tokens` permissions when you create your set of credentials.
+
 In the following section, you will see how you can generate the Customer Impersonation Token for Catalyst front-end.
 
-#### Customer Impersonation Token
+### Customer Impersonation Token
+
+You can generate the customer impersonation token by running:
+
+```
+curl --request POST \
+  --url 'https://api.bigcommerce.com/stores/<store hash>/v3/storefront/api-token-customer-impersonation' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'X-Auth-Token: <access token>' \
+  --data '{"channel_id":1,"expires_at":1885635176}'
+```
 
 ## Amplience Configuration
 
@@ -26,10 +39,10 @@ In the following section, you will see how you can generate the Customer Imperso
 
 Main Amplience configuration is set through an environment variable. You can set it locally in a `.env.local` file:
 
-```
-AMPLIENCE_HUBNAME=<dc hubname>
-AMPLIENCE_FLEXIBLE_SLOT_KEY=<slot key for homepage>
-```
+| Environment variable        | Description              |
+| --------------------------- | ------------------------ |
+| AMPLIENCE_HUBNAME           | Dynamic Content Hub Name |
+| AMPLIENCE_FLEXIBLE_SLOT_KEY | Slot key for homepage    |
 
 Slot key is usually `homepage` in the case of Demostore automation.
 
