@@ -24,7 +24,7 @@ In the following section, you will see how you can generate the Customer Imperso
 
 You can generate the customer impersonation token by running:
 
-```
+```bash
 curl --request POST \
   --url 'https://api.bigcommerce.com/stores/<store hash>/v3/storefront/api-token-customer-impersonation' \
   --header 'Accept: application/json' \
@@ -54,7 +54,7 @@ In the following section, you will see how you can generate the API Token (for t
 
 You can generate the API Token for eComm Toolkit by running:
 
-```
+```bash
 curl --request POST \
   --url 'https://api.bigcommerce.com/stores/<store hash>/v3/storefront/api-token' \
   --header 'Accept: application/json' \
@@ -68,7 +68,7 @@ You can go in your store and get the ID from the URL: `https://<site id>.mybigco
 
 From there you can update the Installation Parameters of the eComm Toolkit extension with the following:
 
-```
+```json
 {
   "vendor": "bigcommerce-cors",
   "codec_params": {
@@ -81,15 +81,18 @@ From there you can update the Installation Parameters of the eComm Toolkit exten
 ### Content Types visualisation URL
 
 You wil need to update / add a new visualisation URL to the following Content Types:
+
 - Blog
 - Card
 - Card List
+- Curated Product Grid
+- Dynamic Product Grid
 - Image
 - Text
 - Simple Banner
 - Flexible Slot
 
-The URL to use is the following: 
+The URL to use is the following:
 
 ### Preview URL
 
@@ -97,13 +100,13 @@ The URL to use is the following:
 
 You can install the project by running:
 
-```
+```bash
 nvm use
 npm ci
 ```
 
 You can then get started immediately by running:
 
-```
+```bash
 npm run dev
 ```
