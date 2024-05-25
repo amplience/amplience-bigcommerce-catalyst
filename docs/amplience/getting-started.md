@@ -88,6 +88,7 @@ You wil need to update / add a new visualisation URL to the following Content Ty
 - Curated Product Grid
 - Dynamic Product Grid
 - Flexible Slot
+- Homepage (Site Pages hierarchy root node)
 - Image
 - Rich Text
 - Simple Banner
