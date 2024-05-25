@@ -7,7 +7,7 @@ Main BigCommerce configuration is set through an environment variable. You can s
 | Environment variable                     | Description                                                                                                     |
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | AUTH_SECRET                              | Random string                                                                                                   |
-| BIGCOMMERCE_STORE_HASH                   | Store Hash, that you can find in the API path or admin URL: https://api.bigcommerce.com/stores/>store hash>/v3/ |
+| BIGCOMMERCE_STORE_HASH                   | Store Hash, that you can find in the API path or admin URL: https://api.bigcommerce.com/stores/[store hash]/v3/ |
 | BIGCOMMERCE_ACCESS_TOKEN                 | Access Token, that you can get when creating a new set of credentials                                           |
 | BIGCOMMERCE_CUSTOMER_IMPERSONATION_TOKEN | Customer Impersonation Token, to be generated using the access token from the API credentials                   |
 | BIGCOMMERCE_CHANNEL_ID                   | Channell ID, default to 1                                                                                       |
@@ -26,7 +26,7 @@ You can generate the customer impersonation token by running:
 
 ```bash
 curl --request POST \
-  --url 'https://api.bigcommerce.com/stores/<store hash>/v3/storefront/api-token-customer-impersonation' \
+  --url 'https://api.bigcommerce.com/stores/[store hash]/v3/storefront/api-token-customer-impersonation' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --header 'X-Auth-Token: <access token>' \
@@ -56,10 +56,10 @@ You can generate the API Token for eComm Toolkit by running:
 
 ```bash
 curl --request POST \
-  --url 'https://api.bigcommerce.com/stores/<store hash>/v3/storefront/api-token' \
+  --url 'https://api.bigcommerce.com/stores/[store hash]/v3/storefront/api-token' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
-  --header 'X-Auth-Token: <access token>' \
+  --header 'X-Auth-Token: [access token]' \
   --data '{"allowed_cors_origins":["https://ecomm-toolkit.extensions.content.amplience.net", "https://localhost:3000"],"channel_id":1,"expires_at":1885635176}'
 ```
 
