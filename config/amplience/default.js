@@ -54,7 +54,7 @@ module.exports = {
         },
         {
           label: 'BigCommerce Catalyst Development',
-          templatedUri: 'http://localhost:3000?vse={{vse.domain}}',
+          templatedUri: 'https://localhost:3000?vse={{vse.domain}}',
           default: false,
         },
       ],
