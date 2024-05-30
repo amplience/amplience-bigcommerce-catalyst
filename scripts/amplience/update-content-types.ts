@@ -1,11 +1,5 @@
-import {Arguments, Argv} from 'yargs';
-import {execSync} from 'child_process';
-import {compile} from 'handlebars';
-import {promises, mkdirSync, rmSync} from 'fs';
-import {tmpdir} from 'os';
-import {join} from 'path';
-import {nanoid} from 'nanoid';
-import {Context} from './cli';
+import { Arguments, Argv } from 'yargs';
+import { Context } from './cli';
 import {
   ContentType,
   ContentTypeVisualization,
@@ -29,7 +23,7 @@ export const paginator = async <T extends HalResource>(
   pagableFn: (options?: Pageable & Sortable) => Promise<Page<T>>,
   options: Pageable & Sortable = {},
 ): Promise<T[]> => {
-  const currentPage = await pagableFn({...options, size: 20});
+  const currentPage = await pagableFn({ ...options, size: 20 });
   if (
     currentPage.page &&
     currentPage.page.number !== undefined &&
@@ -56,7 +50,7 @@ export const updateArgs = (yargs: Argv) => {
     })
     .option('prodUrl', {
       describe: 'production url',
-      required: true,
+      required: false,
       type: 'string',
     })
     .option('hubId', {
@@ -76,9 +70,7 @@ export const updateArgs = (yargs: Argv) => {
     });
 };
 
-export const updateHandler = async (
-  context: Arguments<Context>,
-): Promise<any> => {
+export const updateHandler = async (context: Arguments<Context>): Promise<any> => {
   const client = connectSDK(context);
   const hub = await client.hubs.get(context.hubId);
   const contentTypes = await paginator(hub.related.contentTypes.list);
@@ -87,8 +79,7 @@ export const updateHandler = async (
   contentTypesPatch.contentTypes.forEach(async (contentTypePatch: any) => {
     console.log(`Searching type ${contentTypePatch.contentTypeUri}`);
     const contentType = contentTypes.find(
-      (item: ContentType) =>
-        item.contentTypeUri === contentTypePatch.contentTypeUri,
+      (item: ContentType) => item.contentTypeUri === contentTypePatch.contentTypeUri,
     );
     if (contentType) {
       console.log(`... processing type ${contentTypePatch.contentTypeUri}`);
@@ -103,10 +94,7 @@ export const updateHandler = async (
           const filteredVis = contentType.settings.visualizations.filter(
             (item: ContentTypeVisualization) => item.label !== vis.label,
           );
-          vis.templatedUri = vis.templatedUri.replace(
-            '{{prodUrl}}',
-            context.prodUrl,
-          );
+          vis.templatedUri = vis.templatedUri.replace('{{prodUrl}}', context.prodUrl);
           console.log(`... adding visualization ${vis.label}`);
           filteredVis.push(vis);
           contentType.settings.visualizations = filteredVis;

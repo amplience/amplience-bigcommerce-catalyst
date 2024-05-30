@@ -103,6 +103,68 @@ The URL to use is the following:
 
 - `https://localhost:3000/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}`
 
+You can use the provided `update-content-types` script to automatically update these Content Types with both development (https://localhost:3000) and Production visualisations. You can specify the base domain for the Production visualisation using the `--prodUrl` parameter.
+
+You can execute the script by running:
+
+```bash
+npm run update-content-types
+```
+
+Here are the options:
+
+```
+Update Content Types
+
+Options:
+  --help          Show help                                            [boolean]
+  --version       Show version number                                  [boolean]
+  --hubId         amplience hub id                           [string] [required]
+  --prodUrl       production url                                        [string]
+  --clientId      amplience client id                        [string] [required]
+  --clientSecret  amplience client secret                    [string] [required]
+```
+
+You can change the default URLs / ports in the `./config/amplience/default.js` file.
+Default visualisations are stored in the `defaultVisualizations` property:
+
+```js
+defaultVisualizations: [
+  {
+    label: 'BigCommerce Catalyst Production',
+    templatedUri:
+      '{{prodUrl}}/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}',
+    default: false,
+  },
+  {
+    label: 'BigCommerce Catalyst Development',
+    templatedUri:
+      'https://localhost:3000/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}',
+    default: false,
+  },
+],
+```
+
+You can also change visualisation URLs for a specific Content Type:
+
+```js
+{
+  contentTypeUri: 'https://demostore.amplience.com/site/pages',
+  visualizations: [
+    {
+      label: 'BigCommerce Catalyst Production',
+      templatedUri: '{{prodUrl}}?vse={{vse.domain}}',
+      default: false,
+    },
+    {
+      label: 'BigCommerce Catalyst Development',
+      templatedUri: 'https://localhost:3000?vse={{vse.domain}}',
+      default: false,
+    },
+  ],
+},
+```
+
 ### Preview URL
 
 ## Installing and running the project
