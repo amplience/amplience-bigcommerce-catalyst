@@ -60,4 +60,14 @@ module.exports = {
       ],
     },
   ],
+  applications: [
+    {
+      name: 'BigCommerce Catalyst Production',
+      templatedUri: '{{prodUrl}}?vse={{vse.domain}}',
+    },
+    {
+      name: 'BigCommerce Catalyst Development',
+      templatedUri: 'https://localhost:3000?vse={{vse.domain}}',
+    }
+  ],
 };
