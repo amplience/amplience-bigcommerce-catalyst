@@ -94,9 +94,16 @@ export const updateHandler = async (context: Arguments<Context>): Promise<any> =
           const filteredVis = contentType.settings.visualizations.filter(
             (item: ContentTypeVisualization) => item.label !== vis.label,
           );
-          vis.templatedUri = vis.templatedUri.replace('{{prodUrl}}', context.prodUrl);
-          console.log(`... adding visualization ${vis.label}`);
-          filteredVis.push(vis);
+          if (vis.templatedUri.indexOf('{{prodUrl}}') > -1) {
+            if (context.prodUrl) {
+              vis.templatedUri = vis.templatedUri.replace('{{prodUrl}}', context.prodUrl);
+              console.log(`... adding visualization ${vis.label}`);
+              filteredVis.push(vis);
+            }
+          } else {
+            console.log(`... adding visualization ${vis.label}`);
+            filteredVis.push(vis);
+          }
           contentType.settings.visualizations = filteredVis;
         }
       });
