@@ -8,9 +8,9 @@ The homepage is already set up with content which has already been published.
 
 ## Manual Steps:
 
-* Create an Amplience Event
-* Create an Edition within that event
-* Add your slot flexible slot (`homepage` by default)
-* Add some content into the slot
-* Schedule for the future
-* Preview
+- Create an Amplience Event
+- Create an Edition within that event
+- Add your homepage delivery key (`homepage` by default)
+- Add some content into the slot
+- Schedule for the future
+- Preview

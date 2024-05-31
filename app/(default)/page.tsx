@@ -4,7 +4,7 @@ import { ReadonlyURLSearchParams } from 'next/navigation';
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
 import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
-const FLEXIBLE_SLOT_KEY = String(process.env.AMPLIENCE_FLEXIBLE_SLOT_KEY);
+const HOMEPAGE_DELIVERY_KEY = String(process.env.AMPLIENCE_HOMEPAGE_DELIVERY_KEY);
 
 export interface HomeProps {
   searchParams: ReadonlyURLSearchParams;
@@ -14,7 +14,9 @@ export default async function Home({ searchParams }: HomeProps) {
   const amplienceClientOptions = clientOptionsMapper(searchParams);
   const amplienceClient = createAmplienceClient(amplienceClientOptions);
   const [flexibleSlot] = await Promise.all([
-    (await amplienceClient.getContentItemByKey(FLEXIBLE_SLOT_KEY)).toJSON() as DefaultContentBody,
+    (
+      await amplienceClient.getContentItemByKey(HOMEPAGE_DELIVERY_KEY)
+    ).toJSON() as DefaultContentBody,
   ]);
   const allItemIds: string[] = flexibleSlot.slots.map((content: any) => content.id);
   const allItems = await amplienceClient.getContentItemsById(allItemIds);
