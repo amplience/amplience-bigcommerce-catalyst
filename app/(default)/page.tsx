@@ -36,7 +36,10 @@ export default async function Home({ searchParams }: HomeProps) {
           marginBottom: '30px',
         }}
       >
-        <Link href={`/blog/${BLOG_POST_DELIVERY_KEY}`}>Link to a sample blog post</Link>
+        <h2 className="mb-4 text-xl font-bold md:text-2xl">Sample Amplience Blog Post</h2>
+        <Link href={`/blog/${BLOG_POST_DELIVERY_KEY}`}>
+          Click here to see a sample Blog Post from Amplience
+        </Link>
       </div>
     </>
   );
