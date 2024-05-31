@@ -33,6 +33,8 @@ curl --request POST \
   --data '{"channel_id":1,"expires_at":1885635176}'
 ```
 
+See https://developer.bigcommerce.com/docs/rest-authentication/tokens/customer-impersonation-token#create-a-token for more information.
+
 ## Amplience Configuration
 
 ### Environment file
@@ -62,6 +64,8 @@ curl --request POST \
   --header 'X-Auth-Token: [access_token]' \
   --data '{"allowed_cors_origins":["https://ecomm-toolkit.extensions.content.amplience.net", "https://localhost:3000"],"channel_id":1,"expires_at":1885635176}'
 ```
+
+See https://developer.bigcommerce.com/docs/rest-authentication/tokens#create-a-token for more information.
 
 You will also need your default store Site ID, which is different than the Store Hash.
 You can go in your store and get the ID from the URL: `https://[site_id].mybigcommerce.com`
