@@ -41,12 +41,14 @@ See https://developer.bigcommerce.com/docs/rest-authentication/tokens/customer-i
 
 Main Amplience configuration is set through an environment variable. You can set it locally in a `.env.local` file:
 
-| Environment variable            | Description              |
-| ------------------------------- | ------------------------ |
-| AMPLIENCE_HUBNAME               | Dynamic Content Hub Name |
-| AMPLIENCE_HOMEPAGE_DELIVERY_KEY | Slot key for homepage    |
+| Environment variable             | Description                |
+| -------------------------------- | -------------------------- |
+| AMPLIENCE_HUBNAME                | Dynamic Content Hub Name   |
+| AMPLIENCE_HOMEPAGE_DELIVERY_KEY  | Slot key for homepage      |
+| AMPLIENCE_BLOG_POST_DELIVERY_KEY | Delivery key for blog post |
 
 Slot key is usually `homepage` in the case of Demostore automation.
+Example blog post key from Demostore is `post/anna-barnett-for-the-love-of-food`.
 
 ### eComm Toolkit extension
 

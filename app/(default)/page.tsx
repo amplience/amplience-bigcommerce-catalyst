@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
+import { Link } from '~/components/link';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
 import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
 const HOMEPAGE_DELIVERY_KEY = String(process.env.AMPLIENCE_HOMEPAGE_DELIVERY_KEY);
+const BLOG_POST_DELIVERY_KEY = String(process.env.AMPLIENCE_BLOG_POST_DELIVERY_KEY);
 
 export interface HomeProps {
   searchParams: ReadonlyURLSearchParams;
@@ -28,6 +30,14 @@ export default async function Home({ searchParams }: HomeProps) {
         allItems.responses.map((item: any, index: number) => {
           return <AmplienceContent content={item.content} key={index} />;
         })}
+      <div
+        style={{
+          marginTop: '30px',
+          marginBottom: '30px',
+        }}
+      >
+        <Link href={`/blog/${BLOG_POST_DELIVERY_KEY}`}>Link to a sample blog post</Link>
+      </div>
     </>
   );
 }
