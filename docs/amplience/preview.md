@@ -10,7 +10,7 @@ The homepage is already set up with content which has already been published.
 
 * Create an Amplience Event
 * Create an Edition within that event
-* Add your slot home/slot/top
+* Add your slot flexible slot (`homepage` by default)
 * Add some content into the slot
 * Schedule for the future
 * Preview
