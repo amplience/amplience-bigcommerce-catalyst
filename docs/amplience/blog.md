@@ -23,9 +23,7 @@ This is located in the following location of your application: `/blog-filter`
 
 This page uses the [Amplience Filter API](https://amplience.com/developers/docs/apis/content-delivery/filter-api/) to return blogs and display as cards.
 
-It takes into account paginated fetching and also adding selected sort options to the filter request.
-
-Code location: `pages/blog-filter`
+Code location: `app/(default)/blog-filter`
 
 #### Sample Code
 
