@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: HomeProps) {
         style={{
           display: 'grid',
           gridGap: '1.5rem',
-          gridTemplateColumns: 'repeat(3, 400px)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(355px, 1fr))',
           marginBottom: '2rem',
         }}
       >
@@ -45,9 +45,7 @@ export default async function Home({ searchParams }: HomeProps) {
           ? blogs.responses.map((blog, index) => {
               return (
                 <div key={index}>
-                  <Link href={`/blog/${blog.content._meta.deliveryKey}`}>
-                    <BlogCard {...blog.content} />
-                  </Link>
+                  <BlogCard {...blog} />
                 </div>
               );
             })
