@@ -94,6 +94,11 @@ const HeaderNav = async ({
             )}
           </NavigationMenuItem>
         ))}
+        <NavigationMenuItem>
+          <Link className="flex" href="/blog-filter">
+            Blog
+          </Link>
+        </NavigationMenuItem>
       </NavigationMenuList>
       {inCollapsedNav && (
         <NavigationMenuList className="flex-col items-start border-t border-gray-200 pt-6 lg:hidden">

@@ -1,7 +1,7 @@
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
-import AmplienceContent from '../wrapper/amplience-content';
 import { Link } from '~/components/link';
+import Image from '~/components/amplience/image/image';
 
 export interface BlogCardProps {
   content: DefaultContentBody;
@@ -11,9 +11,17 @@ const BlogCard = ({ content }: BlogCardProps) => {
   return (
     <>
       <Link href={`/blog/${content._meta.deliveryKey}`}>
-        <AmplienceContent content={content.snippet.image} />
+        {content && (
+          <Image
+            image={content.snippet.image.image}
+            query="w=500&sm=aspect&aspect=16:9"
+            _meta={content.snippet.image.image._meta}
+          />
+        )}
         {content.snippet.title ? (
-          <h1 className="mb-4 mt-4 text-xl font-black lg:text-2xl">{content.snippet.title}</h1>
+          <h1 className="mb-4 mt-4 truncate text-xl font-black lg:text-2xl">
+            {content.snippet.title}
+          </h1>
         ) : null}
         <div>
           {content.snippet.author ? (
@@ -23,7 +31,9 @@ const BlogCard = ({ content }: BlogCardProps) => {
             <h4 className="mb-2 text-gray-500">{content.snippet.blogdate}</h4>
           ) : null}
         </div>
-        {content.snippet.description ? <p className="mb-4">{content.snippet.description}</p> : null}
+        {content.snippet.description ? (
+          <p className="mb-4 truncate">{content.snippet.description}</p>
+        ) : null}
       </Link>
     </>
   );
