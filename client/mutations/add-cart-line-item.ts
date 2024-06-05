@@ -18,7 +18,7 @@ export const ADD_TO_CART_LINE_ITEM_MUTATION = /* GraphQL */ `
 
 export const addCartLineItem = async (cartEntityId: string, data: AddCartLineItemsDataInput) => {
   const mutation = graphql(ADD_TO_CART_LINE_ITEM_MUTATION);
-  const customerId = await getSessionCustomerId();
+  const customerId = (await getSessionCustomerId())?.toString();
 
   const response = await client.fetch({
     document: mutation,

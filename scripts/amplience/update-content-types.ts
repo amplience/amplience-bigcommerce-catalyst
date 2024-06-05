@@ -10,7 +10,7 @@ import {
   Settings,
   Sortable,
 } from 'dc-management-sdk-js';
-const contentTypesPatch: any = require('../../config/amplience/default');
+import { contentTypesPatch } from '../../config/amplience/default';
 
 export const connectSDK = (context: Context) => {
   return new DynamicContent({
