@@ -208,11 +208,6 @@ export function getImageURL(
     query.push('maxW=1500');
   }
 
-  // Rebuild URL
-  if (url.indexOf('?') > -1) {
-    url = url.split('?')[0] as string;
-  }
-
   // Add the additional DI Params
   if (diParams) {
     query.push(diParams);

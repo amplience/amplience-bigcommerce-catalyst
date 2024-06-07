@@ -96,7 +96,7 @@ const HeaderNav = async ({
         ))}
         <NavigationMenuItem>
           <Link className="flex" href="/blog-filter">
-            Blog
+            Amplience Blog
           </Link>
         </NavigationMenuItem>
       </NavigationMenuList>

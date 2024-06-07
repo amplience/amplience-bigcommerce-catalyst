@@ -4,6 +4,7 @@ import React from 'react';
 import CallToAction from '../call-to-action/call-to-action';
 import AmplienceContent from '../wrapper/amplience-content';
 import { Link } from '~/components/link';
+import Image from '../image/image';
 
 export interface CallToAction {
   type: string;
@@ -53,7 +54,7 @@ const BlogSnippet = ({
 }: BlogSnippetProps) => {
   return (
     <>
-      <AmplienceContent content={image} />
+      <Image query="w=1500&sm=aspect&aspect=16:9" image={image.image} _meta={image._meta} />
       <div>
         {category?.length ? <small>{category.join(', ')}</small> : null}
         {title ? (
