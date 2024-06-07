@@ -51,11 +51,7 @@ async function fetchBlogs(
 }
 
 const BlogList = ({ amplienceClientOptions }: BlogProps) => {
-  const amplienceClient = createAmplienceClient({
-    hubName: 'automation02',
-  });
-
-  // const amplienceClient = createAmplienceClient(amplienceClientOptions);
+  const amplienceClient = createAmplienceClient(amplienceClientOptions);
 
   const [hydratedBlogs, setHydratedBlogs] = useState<any[]>([]);
   const [sortOrder, setSortOrder] = useState<IOrder>('DESC');

@@ -23,6 +23,15 @@ This is located in the following location of your application: `/blog-filter`
 
 This page uses the [Amplience Filter API](https://amplience.com/developers/docs/apis/content-delivery/filter-api/) to return blogs and display as cards.
 
+You can sort by the following values, using ascending or descending order:
+
+- default
+- author
+- title
+
+The Filter API call is then using these values to sort by, and order by the results.
+The Blog List component is also using pagination to retrieve all blog posts from Amplience.
+
 Code location: `app/(default)/blog-filter`
 
 #### Sample Code
