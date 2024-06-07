@@ -6,7 +6,6 @@ import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
 import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
 const HOMEPAGE_DELIVERY_KEY = String(process.env.AMPLIENCE_HOMEPAGE_DELIVERY_KEY);
-const BLOG_POST_DELIVERY_KEY = String(process.env.AMPLIENCE_BLOG_POST_DELIVERY_KEY);
 
 export interface HomeProps {
   searchParams: ReadonlyURLSearchParams;
@@ -37,9 +36,6 @@ export default async function Home({ searchParams }: HomeProps) {
         }}
       >
         <h2 className="mb-4 text-xl font-bold md:text-2xl">Sample Amplience Blog Post</h2>
-        <Link href={`/blog/${BLOG_POST_DELIVERY_KEY}`}>
-          Click here to see a sample Blog Post from Amplience
-        </Link>
       </div>
     </>
   );
