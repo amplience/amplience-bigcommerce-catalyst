@@ -1,15 +1,15 @@
 export const contentTypesPatch = {
   defaultVisualizations: [
     {
-      label: 'Shopify Hydrogen Production',
+      label: 'BigCommerce Catalyst Production',
       templatedUri:
-        '{{prodUrl}}/{{locales}}/visualization?content={{content.sys.id}}&vse={{vse.domain}}&hub={{hub.name}}',
+        '{{prodUrl}}/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}',
       default: false,
     },
     {
-      label: 'Shopify Hydrogen Development',
+      label: 'BigCommerce Catalyst Development',
       templatedUri:
-        'http://localhost:3000/{{locales}}/visualization?content={{content.sys.id}}&vse={{vse.domain}}&hub={{hub.name}}',
+        'https://localhost:3000/amplience/visualization?contentId={{content.sys.id}}&stagingEnvironment={{vse.domain}}&locale={{locales}}',
       default: false,
     },
   ],
@@ -24,8 +24,7 @@ export const contentTypesPatch = {
       contentTypeUri: 'https://demostore.amplience.com/content/blog',
     },
     {
-      contentTypeUri:
-        'https://demostore.amplience.com/content/curated-product-grid',
+      contentTypeUri: 'https://demostore.amplience.com/content/curated-product-grid',
     },
     {
       contentTypeUri: 'https://demostore.amplience.com/content/product-grid',
@@ -49,13 +48,13 @@ export const contentTypesPatch = {
       contentTypeUri: 'https://demostore.amplience.com/site/pages',
       visualizations: [
         {
-          label: 'Shopify Hydrogen Production',
+          label: 'BigCommerce Catalyst Production',
           templatedUri: '{{prodUrl}}?vse={{vse.domain}}',
           default: false,
         },
         {
-          label: 'Shopify Hydrogen Development',
-          templatedUri: 'http://localhost:3000?vse={{vse.domain}}',
+          label: 'BigCommerce Catalyst Development',
+          templatedUri: 'http://localhosts:3000?vse={{vse.domain}}',
           default: false,
         },
       ],
@@ -63,12 +62,12 @@ export const contentTypesPatch = {
   ],
   applications: [
     {
-      name: 'Shopify Hydrogen Production',
+      name: 'BigCommerce Catalyst Production',
       templatedUri: '{{prodUrl}}?vse={{vse.domain}}',
     },
     {
-      name: 'Shopify Hydrogen Development',
-      templatedUri: 'http://localhost:3000?vse={{vse.domain}}',
+      name: 'BigCommerce Catalyst Development',
+      templatedUri: 'https://localhost:3000?vse={{vse.domain}}',
     },
   ],
 };
