@@ -4,6 +4,7 @@ import { ContentClient } from 'dc-delivery-sdk-js';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FilterByRequest, IOrder } from 'dc-delivery-sdk-js/build/main/lib/content/model/FilterBy';
 import { createAmplienceClient } from '~/amplience-client';
+import BlogCard from './blog-card';
 
 export type SortByValue = 'default' | 'title' | 'author';
 
@@ -39,16 +40,22 @@ async function fetchBlogs(
     };
     const results = await amplienceClient.filterContentItems(filterRequest);
     const responses = results?.responses || [];
+
     if (results?.page.nextCursor) {
       return [...responses, ...(await fetchPage(results?.page.nextCursor))];
     }
     return responses;
   };
+
   return fetchPage();
 }
 
 const BlogList = ({ amplienceClientOptions }: BlogProps) => {
-  const amplienceClient = createAmplienceClient(amplienceClientOptions);
+  const amplienceClient = createAmplienceClient({
+    hubName: 'automation02',
+  });
+
+  // const amplienceClient = createAmplienceClient(amplienceClientOptions);
 
   const [hydratedBlogs, setHydratedBlogs] = useState<any[]>([]);
   const [sortOrder, setSortOrder] = useState<IOrder>('DESC');
@@ -67,6 +74,7 @@ const BlogList = ({ amplienceClientOptions }: BlogProps) => {
   useEffect(() => {
     const fetchData = async () => {
       const blogs = await fetchBlogs({ order: sortOrder, key: sortValue }, amplienceClient);
+      console.log(blogs);
       setHydratedBlogs(blogs);
     };
     void fetchData();
@@ -74,18 +82,36 @@ const BlogList = ({ amplienceClientOptions }: BlogProps) => {
 
   return (
     <div>
-      <p>SORT ORDER: {sortOrder}</p>
-      <p>SORT VALUE: {sortValue}</p>
-      <select name="sortValue" onChange={handleSortValueChange}>
+      Sort By:{' '}
+      <select className="mr-4" name="sortValue" onChange={handleSortValueChange}>
         <option value="default">Default</option>
         <option value="author">Author</option>
         <option value="title">Title</option>
       </select>
+      Order By:{' '}
       <select name="sortOrder" onChange={handleSortOrderChange}>
         <option value="DESC">Desc</option>
         <option value="ASC">Asc</option>
       </select>
-      <div className="mb-8">{JSON.stringify(hydratedBlogs, null, 2)}</div>
+      <div
+        style={{
+          display: 'grid',
+          gridGap: '1.5rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(355px, 1fr))',
+          marginBottom: '2rem',
+          marginTop: '2rem',
+        }}
+      >
+        {hydratedBlogs
+          ? hydratedBlogs.map((blog, index) => {
+              return (
+                <div key={index}>
+                  <BlogCard {...blog} />
+                </div>
+              );
+            })
+          : null}
+      </div>
     </div>
   );
 };
