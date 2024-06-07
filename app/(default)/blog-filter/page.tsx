@@ -9,7 +9,8 @@ export interface BlogFilterProps {
 
 export default async function BlogFilter({ searchParams }: BlogFilterProps) {
   const amplienceClientOptions = clientOptionsMapper(searchParams);
-  amplienceClientOptions.hubName = String(process.env.AMPLIENCE_HUBNAME);
+  amplienceClientOptions.hubName =
+    amplienceClientOptions.hubName || String(process.env.AMPLIENCE_HUBNAME);
 
   return <BlogList amplienceClientOptions={amplienceClientOptions} />;
 }
