@@ -2,7 +2,6 @@ import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
 
 import CallToAction from '../call-to-action/call-to-action';
-import AmplienceContent from '../wrapper/amplience-content';
 import { Link } from '~/components/link';
 import Image from '../image/image';
 

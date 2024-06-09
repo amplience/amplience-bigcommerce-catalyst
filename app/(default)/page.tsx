@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
-import { Link } from '~/components/link';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
