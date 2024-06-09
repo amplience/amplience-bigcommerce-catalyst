@@ -171,6 +171,21 @@ You can also change visualisation URLs for a specific Content Type:
 
 ### Preview URL
 
+Preview application URLs are also defined in the config file:
+
+```js
+  applications: [
+    {
+      name: 'BigCommerce Catalyst Production',
+      templatedUri: '{{prodUrl}}?vse={{vse.domain}}',
+    },
+    {
+      name: 'BigCommerce Catalyst Development',
+      templatedUri: 'https://localhost:3000?vse={{vse.domain}}',
+    },
+  ],
+```
+
 ## Installing and running the project
 
 You can install the project by running:
