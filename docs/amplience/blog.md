@@ -1,5 +1,7 @@
 # Amplience Blog Posts
 
+![Amplience Blog](./media/catalyst-blog.png)
+
 The Blog page https://localhost:3000/blog-filter is using Amplience Filter API to display a list of Blog Posts.
 
 ## Amplience Filter API
