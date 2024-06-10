@@ -28,14 +28,6 @@ export default async function Home({ searchParams }: HomeProps) {
         allItems.responses.map((item: any, index: number) => {
           return <AmplienceContent content={item.content} key={index} />;
         })}
-      <div
-        style={{
-          marginTop: '30px',
-          marginBottom: '30px',
-        }}
-      >
-        <h2 className="mb-4 text-xl font-bold md:text-2xl">Sample Amplience Blog Post</h2>
-      </div>
     </>
   );
 }
