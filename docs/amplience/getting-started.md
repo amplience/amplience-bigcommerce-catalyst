@@ -186,6 +186,12 @@ Preview application URLs are also defined in the config file:
   ],
 ```
 
+### Production URL
+
+You can find adeployed version of this project here: https://amplience-bigcommerce-catalyst-amplience.vercel.app
+
+You can use it for your Production visualisations and to test the integrated demonstration (images, content, blog posts, visualisation, preview, etc.).
+
 ## Installing and running the project
 
 You can install the project by running:
