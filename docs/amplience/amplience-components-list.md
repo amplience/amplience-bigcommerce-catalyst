@@ -16,3 +16,23 @@
 The components above all have a rendering UI. All the other Content Types from Demostore renders as JSON.
 
 ![JSON Rendering](./media/json-rendering.png)
+
+### How to add a new component render
+
+You can handle new components by adding their schemas in the `components/amplience/wrapper/amplience-content.tsx` file:
+
+```js
+const COMPONENT_MAPPING: ComponentMapType = {
+  'https://demostore.amplience.com/content/image': Image,
+  'https://demostore.amplience.com/content/text': Text,
+  'https://demostore.amplience.com/content/simple-banner': SimpleBanner,
+  'https://demostore.amplience.com/slots/flexible': FlexibleSlot,
+  'https://demostore.amplience.com/content/curated-product-grid': CuratedProductGrid,
+  'https://demostore.amplience.com/content/product-grid': DynamicProductGrid,
+  'https://demostore.amplience.com/content/card': Card,
+  'https://demostore.amplience.com/content/card-list': CardList,
+  'https://demostore.amplience.com/content/rich-text': RichText,
+  'https://demostore.amplience.com/content/blog': Blog,
+  'https://demostore.amplience.com/content/blog-snippet': BlogSnippet,
+};
+```
