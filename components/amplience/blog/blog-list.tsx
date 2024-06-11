@@ -80,7 +80,7 @@ const BlogList = ({ amplienceClientOptions }: BlogProps) => {
     <div>
       Sort By:{' '}
       <select className="mr-4" name="sortValue" onChange={handleSortValueChange}>
-        <option value="default">Default</option>
+        <option value="default">Date</option>
         <option value="author">Author</option>
         <option value="title">Title</option>
       </select>
