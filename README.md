@@ -7,7 +7,7 @@ This version of the Catalyst app integrates Amplience as the Content CMS.
 - drive site content
 - schedule & preview content
 - real-time visualisation of content
-- automation scripts to load required content schemas and types to your Content HUB
+- automation script to update Content Types and Preview URLs in your Content Hub
 
 The documentation starting here below is 'as-is' from BigCommerce. For Amplience specifics please see the docs listed under Amplience Contents.
 
