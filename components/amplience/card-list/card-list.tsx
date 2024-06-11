@@ -18,10 +18,10 @@ const CardList = ({ header, cards }: CardListProps) => {
           {cards.map((card: any, index: number) => {
             return (
               <Card
+                key={index}
                 style={{
                   width: `calc(100%/${cards.length})`,
                 }}
-                key={index}
                 {...card}
               />
             );

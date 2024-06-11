@@ -1,9 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
 
-import CallToAction from '../call-to-action/call-to-action';
 import { Link } from '~/components/link';
+
+import CallToAction from '../call-to-action/call-to-action';
 import Image from '../image/image';
+import { AmplienceImage } from '../image/image.types';
 
 export interface CallToAction {
   type: string;
@@ -12,7 +15,7 @@ export interface CallToAction {
 }
 
 export interface BlogSnippetProps {
-  image: DefaultContentBody;
+  image: { image: AmplienceImage } & DefaultContentBody;
   title: string;
   blogdate: string;
   author: string;
@@ -53,7 +56,7 @@ const BlogSnippet = ({
 }: BlogSnippetProps) => {
   return (
     <>
-      <Image query="w=1500&sm=aspect&aspect=16:9" image={image.image} _meta={image._meta} />
+      <Image _meta={image._meta} image={image.image} query="w=1500&sm=aspect&aspect=16:9" />
       <div>
         {category?.length ? <small>{category.join(', ')}</small> : null}
         {title ? (
