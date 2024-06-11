@@ -10,35 +10,33 @@ import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
 import { Hero } from '~/components/hero';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 
-const SIMPLE_BANNER_ID = String(process.env.AMPLIENCE_SIMPLE_BANNER_ID);
-const SIMPLE_BANNER_KEY = String(process.env.AMPLIENCE_SIMPLE_BANNER_KEY);
-const FLEXIBLE_SLOT_KEY = String(process.env.AMPLIENCE_FLEXIBLE_SLOT_KEY);
+const HOMEPAGE_CONTENT = 'docs/story/simplebanner/banner1';
 
 export interface HomeProps {
   searchParams: ReadonlyURLSearchParams;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  const amplienceClientOptions = clientOptionsMapper(searchParams);
-  const amplienceClient = createAmplienceClient(amplienceClientOptions);
-  const [bestSellingProducts, featuredProducts, simpleBanner, simpleBannerKey, flexibleSlot] =
-    await Promise.all([
-      getBestSellingProducts({ imageWidth: 500, imageHeight: 500 }),
-      getFeaturedProducts({ imageWidth: 500, imageHeight: 500 }),
-      (await amplienceClient.getContentItemById(SIMPLE_BANNER_ID)).toJSON() as DefaultContentBody,
-      (await amplienceClient.getContentItemByKey(SIMPLE_BANNER_KEY)).toJSON() as DefaultContentBody,
-      (await amplienceClient.getContentItemByKey(FLEXIBLE_SLOT_KEY)).toJSON() as DefaultContentBody,
-    ]);
+  const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
+  let homepageSlot;
+
+  try {
+    homepageSlot = (
+      await amplienceClient.getContentItemByKey(HOMEPAGE_CONTENT)
+    ).toJSON() as DefaultContentBody;
+  } catch (e) {
+    console.error(`Unable to load content item by key: ${HOMEPAGE_CONTENT}`);
+  }
+
+  const [bestSellingProducts, featuredProducts] = await Promise.all([
+    getBestSellingProducts({ imageWidth: 500, imageHeight: 500 }),
+    getFeaturedProducts({ imageWidth: 500, imageHeight: 500 }),
+  ]);
 
   return (
     <>
       <Hero />
-      <h1>Simple banner by ID</h1>
-      <AmplienceContent content={simpleBanner} />
-      <h1>Simple banner by Key</h1>
-      <AmplienceContent content={simpleBannerKey} />
-      <h1>Flexible Slot by Key</h1>
-      <AmplienceContent content={flexibleSlot} />
+      {homepageSlot && <AmplienceContent content={homepageSlot} />}
       <div className="my-10">
         <ProductCardCarousel
           products={featuredProducts}

@@ -11,18 +11,26 @@ export interface VisualizationProps {
 }
 
 export default async function Visualization({ searchParams }: VisualizationProps) {
-  const amplienceClientOptions = clientOptionsMapper(searchParams);
-  const amplienceClient = createAmplienceClient(amplienceClientOptions);
+  const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
   const { contentId } = searchParams;
-  const content = (
-    await amplienceClient.getContentItemById(contentId)
-  ).toJSON() as DefaultContentBody;
 
-  return (
-    <div>
-      <RealtimeVisualization content={content} />
-    </div>
-  );
+  try {
+    const content = (
+      await amplienceClient.getContentItemById(contentId)
+    ).toJSON() as DefaultContentBody;
+
+    return (
+      <div>
+        <RealtimeVisualization content={content} />
+      </div>
+    );
+  } catch (e) {
+    return (
+      <div>
+        <p>Content not found...</p>
+      </div>
+    );
+  }
 }
 
 export const runtime = 'edge';
