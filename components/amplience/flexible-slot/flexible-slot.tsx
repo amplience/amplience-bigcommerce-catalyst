@@ -1,5 +1,4 @@
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
-import { nanoid } from 'nanoid';
 import React from 'react';
 
 import AmplienceContent from '../wrapper/amplience-content';

@@ -1,7 +1,10 @@
 'use client';
 
 import { clsx } from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { localiseString } from '~/utils/localized-string';
 
 import DefaultAdaptiveImageRef from '../adaptive-image/default-adaptive-image';
 import DefaultAdaptiveImageSkeleton from '../adaptive-image/default-adaptive-image-skeleton';
@@ -50,6 +53,8 @@ const SimpleBanner = ({
     textPositionVertical: 'middle',
   },
 }: SimpleBannerProps) => {
+  const searchParams = useSearchParams();
+  const locale = searchParams.get('locale') || undefined;
   const [imageLoading, setImageLoading] = useState(true);
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -132,15 +137,17 @@ const SimpleBanner = ({
             textAlign: textPositionHorizontal,
           }}
         >
-          <h1 className="mb-8 mt-0 text-3xl font-black lg:text-5xl">{bannerText?.header}</h1>
+          <h1 className="mb-8 mt-0 text-3xl font-black lg:text-5xl">
+            {bannerText && localiseString(bannerText.header, locale)}
+          </h1>
           <h2 className="text-2xl font-black lg:text-3xl">{bannerText?.subheader}</h2>
           <p style={{ marginBottom: '20px' }}>{bannerText?.description}</p>
-          {Boolean(ctaSettings?.buttonText) && (
+          {ctaSettings && Boolean(ctaSettings.buttonText) && (
             <LinkWithQuery
               className="font mt-4 rounded bg-[#333] px-3.5 py-2.5 text-xs font-bold text-[#eee] no-underline hover:bg-[#eee] hover:text-[#333] hover:no-underline"
-              href={ctaSettings?.linkUrl || '#'}
+              href={ctaSettings.linkUrl || '#'}
             >
-              {ctaSettings?.buttonText}
+              {localiseString(ctaSettings.buttonText, locale)}
             </LinkWithQuery>
           )}
         </div>

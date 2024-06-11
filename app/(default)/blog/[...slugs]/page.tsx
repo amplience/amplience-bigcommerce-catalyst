@@ -19,8 +19,7 @@ export async function generateMetadata({
   searchParams,
   params,
 }: AmplienceBlogPageProps): Promise<Metadata> {
-  const amplienceClientOptions = clientOptionsMapper(searchParams);
-  const amplienceClient = createAmplienceClient(amplienceClientOptions);
+  const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
   const slug = params.slugs.join('/');
 
   try {
@@ -48,8 +47,7 @@ export async function generateMetadata({
 }
 
 export default async function AmplienceBlogPage({ searchParams, params }: AmplienceBlogPageProps) {
-  const amplienceClientOptions = clientOptionsMapper(searchParams);
-  const amplienceClient = createAmplienceClient(amplienceClientOptions);
+  const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
   const slug = params.slugs.join('/');
 
   try {
