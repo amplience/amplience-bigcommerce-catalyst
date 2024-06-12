@@ -62,7 +62,7 @@ const Text = ({ text, align }: TextProps) => {
       },
       ol: {
         component: ({ ...props }) => (
-          <ol style={{ listStyle: 'classic', margin: '0px', paddingLeft: '40px' }}>
+          <ol style={{ listStyle: 'decimal', margin: '0px', paddingLeft: '40px' }}>
             <span {...props} />
           </ol>
         ),
