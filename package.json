@@ -79,7 +79,7 @@
     "@types/yargs": "^15.0.12",
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.2",
-    "dc-management-sdk-js": "github:amplience/dc-management-sdk-js",
+    "dc-management-sdk-js": "^2.0.0",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.0.4",
