@@ -66,6 +66,20 @@ const RichText = ({ text = [], align = 'left' }: RichTextProps & DefaultContentB
           </h5>
         ),
       },
+      ul: {
+        component: ({ ...props }) => (
+          <ul style={{ listStyle: 'disc', margin: '0px', paddingLeft: '40px' }}>
+            <span {...props} />
+          </ul>
+        ),
+      },
+      ol: {
+        component: ({ ...props }) => (
+          <ol style={{ listStyle: 'classic', margin: '0px', paddingLeft: '40px' }}>
+            <span {...props} />
+          </ol>
+        ),
+      },
       li: {
         component: ({ ...props }) => (
           <li>
