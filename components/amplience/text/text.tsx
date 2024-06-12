@@ -55,14 +55,14 @@ const Text = ({ text, align }: TextProps) => {
       },
       ul: {
         component: ({ ...props }) => (
-          <ul style={{ listStyle: 'disc', margin: '0px', paddingLeft: '40px' }}>
+          <ul {...props} style={{ listStyle: 'disc', margin: '0px', paddingLeft: '40px' }}>
             <span {...props} />
           </ul>
         ),
       },
       ol: {
         component: ({ ...props }) => (
-          <ol style={{ listStyle: 'decimal', margin: '0px', paddingLeft: '40px' }}>
+          <ol {...props} style={{ listStyle: 'decimal', margin: '0px', paddingLeft: '40px' }}>
             <span {...props} />
           </ol>
         ),
