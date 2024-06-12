@@ -30,11 +30,13 @@ export interface CardProps {
   cardName?: string;
   description?: string;
   links?: Array<{ label: string; type: string; value: string } & DefaultContentBody>;
+  style?: any;
 }
 
-const Card = ({ image, cardName, description, links }: CardProps) => {
+const Card = ({ image, cardName, description, links, style }: CardProps) => {
   const imageRef = useRef<any>();
   const [imageLoading, setImageLoading] = useState(true);
+
   const handleImageLoaded = () => {
     setImageLoading(false);
   };
@@ -63,7 +65,7 @@ const Card = ({ image, cardName, description, links }: CardProps) => {
   };
 
   return (
-    <div>
+    <div style={style}>
       <div
         style={{
           border: 'none',

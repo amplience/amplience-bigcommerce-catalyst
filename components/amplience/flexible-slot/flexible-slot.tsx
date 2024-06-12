@@ -1,5 +1,4 @@
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
-import { nanoid } from 'nanoid';
 import React from 'react';
 
 import AmplienceContent from '../wrapper/amplience-content';
@@ -11,8 +10,8 @@ interface FlexibleSlotProps {
 const FlexibleSlot = ({ contentTypes = [] }: FlexibleSlotProps) => {
   return (
     <>
-      {contentTypes.map((content) => {
-        return <AmplienceContent content={content} key={nanoid()} />;
+      {contentTypes.map((content, index) => {
+        return <AmplienceContent content={content} key={index} />;
       })}
     </>
   );

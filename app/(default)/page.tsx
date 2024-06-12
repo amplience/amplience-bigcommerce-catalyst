@@ -1,60 +1,46 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
+
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
 import { createAmplienceClient } from '~/amplience-client';
 import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
-import { getBestSellingProducts } from '~/client/queries/get-best-selling-products';
-import { getFeaturedProducts } from '~/client/queries/get-featured-products';
 import AmplienceContent from '~/components/amplience/wrapper/amplience-content';
-import { Hero } from '~/components/hero';
-import { ProductCardCarousel } from '~/components/product-card-carousel';
 
-const HOMEPAGE_CONTENT = 'docs/story/simplebanner/banner1';
+const HOMEPAGE_DELIVERY_KEY = String(process.env.AMPLIENCE_HOMEPAGE_DELIVERY_KEY);
 
 export interface HomeProps {
   searchParams: ReadonlyURLSearchParams;
 }
 
+interface FlexibleSlot extends DefaultContentBody {
+  slots: Array<{ id: string }>;
+}
+
+interface Slot extends DefaultContentBody {
+  content: DefaultContentBody;
+}
+
 export default async function Home({ searchParams }: HomeProps) {
   const amplienceClient = createAmplienceClient(clientOptionsMapper(searchParams));
-  let homepageSlot;
 
   try {
-    homepageSlot = (
-      await amplienceClient.getContentItemByKey(HOMEPAGE_CONTENT)
-    ).toJSON() as DefaultContentBody;
+    const flexibleSlot = (
+      await amplienceClient.getContentItemByKey(HOMEPAGE_DELIVERY_KEY)
+    ).toJSON() as FlexibleSlot;
+    const allItemIds: string[] = flexibleSlot.slots.map((slot) => slot.id);
+    const allItems = await amplienceClient.getContentItemsById<Slot>(allItemIds);
+
+    return (
+      <>
+        {allItems.responses.map((item, index: number) => {
+          return <AmplienceContent content={item.content} key={index} />;
+        })}
+      </>
+    );
   } catch (e) {
-    console.error(`Unable to load content item by key: ${HOMEPAGE_CONTENT}`);
+    console.error(`Unable to load content item by key: ${HOMEPAGE_DELIVERY_KEY}`);
   }
-
-  const [bestSellingProducts, featuredProducts] = await Promise.all([
-    getBestSellingProducts({ imageWidth: 500, imageHeight: 500 }),
-    getFeaturedProducts({ imageWidth: 500, imageHeight: 500 }),
-  ]);
-
-  return (
-    <>
-      <Hero />
-      {homepageSlot && <AmplienceContent content={homepageSlot} />}
-      <div className="my-10">
-        <ProductCardCarousel
-          products={featuredProducts}
-          showCart={false}
-          showCompare={false}
-          showReviews={false}
-          title="Featured products"
-        />
-        <ProductCardCarousel
-          products={bestSellingProducts}
-          showCart={false}
-          showCompare={false}
-          showReviews={false}
-          title="Popular products"
-        />
-      </div>
-    </>
-  );
 }
 
 export const runtime = 'edge';

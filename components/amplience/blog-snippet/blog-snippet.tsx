@@ -1,8 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
 
+import { Link } from '~/components/link';
+
 import CallToAction from '../call-to-action/call-to-action';
-import AmplienceContent from '../wrapper/amplience-content';
+import Image from '../image/image';
+import { AmplienceImage } from '../image/image.types';
 
 export interface CallToAction {
   type: string;
@@ -11,7 +15,7 @@ export interface CallToAction {
 }
 
 export interface BlogSnippetProps {
-  image: DefaultContentBody;
+  image: { image: AmplienceImage } & DefaultContentBody;
   title: string;
   blogdate: string;
   author: string;
@@ -52,18 +56,18 @@ const BlogSnippet = ({
 }: BlogSnippetProps) => {
   return (
     <>
-      <div className="amp-dc-banner js_dc_banner">
-        <div className="amp-dc-banner-wrapper">
-          <div className="amp-dc-banner-pic-wrap">
-            <AmplienceContent content={image} />
-          </div>
-        </div>
-      </div>
-
-      <div className="amp-dc-snippet-info-wrap">
+      <Image _meta={image._meta} image={image.image} query="w=1500&sm=aspect&aspect=16:9" />
+      <div>
         {category?.length ? <small>{category.join(', ')}</small> : null}
-        {title ? <h1 className="mb-4 mt-4 text-3xl font-black lg:text-5xl">{title}</h1> : null}
-        <div className="amp-dc-snippet-info-wrap__description">
+        {title ? (
+          <>
+            <h2 className="mb-4 mt-4 text-2xl font-black lg:text-3xl">
+              <Link href="/blog-filter">Blogs</Link>
+            </h2>
+            <h1 className="mb-4 mt-4 text-3xl font-black lg:text-5xl">{title}</h1>
+          </>
+        ) : null}
+        <div>
           {author ? <h4 className="mb-2 text-gray-500">{author}</h4> : null}
           {blogdate ? <h4 className="mb-2 text-gray-500">{blogdate}</h4> : null}
         </div>

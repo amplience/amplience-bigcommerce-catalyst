@@ -1,5 +1,52 @@
 # amplience-bigcommerce-catalyst
 
+## Amplience Specifics
+
+This version of the Catalyst app integrates Amplience as the Content CMS.
+
+- drive site content
+- schedule & preview content
+- real-time visualisation of content
+- automation script to update Content Types and Preview URLs in your Content Hub
+
+The documentation starting here below is 'as-is' from BigCommerce. For Amplience specifics please see the docs listed under Amplience Contents.
+
+`amplience-bigcommerce-catalyst` project is intended for DEMO PURPOSES ONLY, and not for production-optimized environments. It will give developers the foundation to integrate BigCommerce Catalyst and Amplience Dynamic Content.
+
+## Amplience Contents
+
+### 🏁 Quick Start
+
+- [Getting Started](./docs/amplience/getting-started.md)
+- [Deploying to Vercel](./docs/amplience/deploying-to-vercel.md)
+
+### ⚙️ Core Functionalities
+
+- [Amplience Configuration](./docs/amplience/amplience-configuration.md)
+- [Amplience API](./docs/amplience/amplience-api.md)
+- [Visualisation](./docs/amplience/visualisation.md)
+- [Preview](./docs/amplience/preview.md)
+- [Amplience Account](./docs/amplience/amplience-account.md)
+
+### 🧩 Components & Extensions
+
+- [Amplience Extensions List](./docs/amplience/amplience-extensions-list.md)
+  - eComm Toolkit
+- [Amplience Components List](./docs/amplience/amplience-components-list.md)
+  - [Blog](./docs/amplience/blog.md)
+  - Card
+  - Card List
+  - Curated Product Grid
+  - Dynamic Product Grid
+  - Homepage (Site Pages hierarchy root node)
+  - Image
+  - Rich Text
+  - Simple Banner
+  - Text
+  - Amplience Content wrapper
+- [Amplience Slots List](./docs/amplience/amplience-slots-list.md)
+  - Flexible Slot
+
 ## Requirements
 
 - Node.js 18+

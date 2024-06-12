@@ -13,7 +13,8 @@
     "dev-codegen": "dotenv -e .env.local -- pnpm codegen -w",
     "codegen": "dotenv -e .env.local -- gql-gen --errors-only --config codegen.ts",
     "build": "pnpm run codegen && next build",
-    "start": "next start"
+    "start": "next start",
+    "update-content-types": "ts-node scripts/amplience/index.ts update-content-types"
   },
   "dependencies": {
     "@bigcommerce/catalyst-client": "^0.3.0",
@@ -39,6 +40,8 @@
     "dc-visualization-sdk": "^1.1.0",
     "embla-carousel-react": "^8.0.4",
     "focus-trap-react": "^10.2.3",
+    "handlebars": "^4.7.8",
+    "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.378.0",
     "markdown-to-jsx": "^7.4.1",
@@ -56,6 +59,7 @@
     "sharp": "^0.33.0",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-radix": "^3.0.3",
+    "yargs": "^15.4.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -66,13 +70,16 @@
     "@parcel/watcher": "^2.3.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@testing-library/react": "^15.0.7",
+    "@types/lodash": "^4.17.4",
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^20.12.11",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@types/react-google-recaptcha": "^2.1.8",
+    "@types/yargs": "^15.0.12",
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.2",
+    "dc-management-sdk-js": "^2.0.0",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.0.4",
