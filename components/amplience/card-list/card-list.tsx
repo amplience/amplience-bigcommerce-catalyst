@@ -22,7 +22,10 @@ const CardList = ({ header, cards }: CardListProps) => {
                 style={{
                   width: `calc(100%/${cards.length})`,
                 }}
-                {...card}
+                image={card.image}
+                cardName={card.cardName}
+                description={card.description}
+                links={card.links}
               />
             );
           })}
