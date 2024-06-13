@@ -1,3 +1,6 @@
+import { ChevronDown, LogOut, ShoppingCart, User } from 'lucide-react';
+import { ReactNode, Suspense } from 'react';
+
 import { Button } from '@bigcommerce/components/button';
 import {
   NavigationMenu,
@@ -9,9 +12,6 @@ import {
   NavigationMenuToggle,
   NavigationMenuTrigger,
 } from '@bigcommerce/components/navigation-menu';
-import { ChevronDown, LogOut, ShoppingCart, User } from 'lucide-react';
-import { ReactNode, Suspense } from 'react';
-
 import { getSessionCustomerId } from '~/auth';
 import { getCategoryTree } from '~/client/queries/get-category-tree';
 import { Link } from '~/components/link';

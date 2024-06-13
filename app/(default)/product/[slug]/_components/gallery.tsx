@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 import {
   Gallery as ComponentsGallery,
   GalleryContent,
@@ -9,8 +11,6 @@ import {
   GalleryThumbnailItem,
   GalleryThumbnailList,
 } from '@bigcommerce/components/gallery';
-import Image from 'next/image';
-
 import { getProduct } from '~/client/queries/get-product';
 
 type Product = Awaited<ReturnType<typeof getProduct>>;

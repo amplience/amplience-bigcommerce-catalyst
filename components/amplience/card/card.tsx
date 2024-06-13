@@ -30,7 +30,7 @@ export interface CardProps {
   cardName?: string;
   description?: string;
   links?: Array<{ label: string; type: string; value: string } & DefaultContentBody>;
-  style?: any;
+  style?: React.CSSProperties;
 }
 
 const Card = ({ image, cardName, description, links, style }: CardProps) => {

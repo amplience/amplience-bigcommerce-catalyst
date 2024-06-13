@@ -1,5 +1,4 @@
 import { Rating } from '@bigcommerce/components/rating';
-
 import { getProductReviews } from '~/client/queries/get-product-reviews';
 
 import { ProductReviewSchema } from './product-review-schema';

@@ -1,7 +1,8 @@
 'use client';
 
-import { Select, SelectContent, SelectItem } from '@bigcommerce/components/select';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
+import { Select, SelectContent, SelectItem } from '@bigcommerce/components/select';
 
 export function SortBy() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export function SortBy() {
 
     params.set('sort', sortValue);
 
-    return router.push(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return (

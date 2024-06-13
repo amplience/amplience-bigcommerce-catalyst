@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
 
@@ -56,7 +55,7 @@ const BlogSnippet = ({
 }: BlogSnippetProps) => {
   return (
     <>
-      <Image _meta={image._meta} image={image.image} query="w=1500&sm=aspect&aspect=16:9" />
+      <Image image={image.image} query="w=1500&sm=aspect&aspect=16:9" />
       <div>
         {category?.length ? <small>{category.join(', ')}</small> : null}
         {title ? (

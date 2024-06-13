@@ -1,5 +1,4 @@
 import { Message } from '@bigcommerce/components/message';
-
 import { getFeaturedProducts } from '~/client/queries/get-featured-products';
 import { ProductCard } from '~/components/product-card';
 import { SearchForm } from '~/components/search-form';

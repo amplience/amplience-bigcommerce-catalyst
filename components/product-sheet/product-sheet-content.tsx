@@ -1,11 +1,11 @@
 'use client';
 
-import { Rating } from '@bigcommerce/components/rating';
 import { Loader2 as Spinner } from 'lucide-react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useId, useState } from 'react';
 
+import { Rating } from '@bigcommerce/components/rating';
 import { getProduct } from '~/client/queries/get-product';
 import { ProductForm } from '~/components/product-form';
 import { cn } from '~/lib/utils';

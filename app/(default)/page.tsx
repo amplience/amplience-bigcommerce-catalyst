@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
@@ -33,7 +37,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
     return (
       <>
-        {allItems.responses.map((item, index: number) => {
+        {allItems.responses.map((item: any, index: number) => {
           return <AmplienceContent content={item.content} key={index} />;
         })}
       </>

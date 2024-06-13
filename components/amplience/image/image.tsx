@@ -1,9 +1,7 @@
-import { DefaultContentBody } from 'dc-delivery-sdk-js';
-
 import { AmplienceImage } from './image.types';
 import { buildSrcUrl } from './image.utils';
 
-type ImageProps = {
+interface ImageProps {
   image?: AmplienceImage;
   query: string;
   format?: string;
@@ -11,7 +9,7 @@ type ImageProps = {
   di?: string;
   seoText?: string;
   display?: string;
-} & DefaultContentBody;
+}
 
 interface SourceProps {
   minWidth?: number;

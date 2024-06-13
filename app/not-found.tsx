@@ -1,6 +1,6 @@
-import { Message } from '@bigcommerce/components/message';
 import { ShoppingCart } from 'lucide-react';
 
+import { Message } from '@bigcommerce/components/message';
 import { getFeaturedProducts } from '~/client/queries/get-featured-products';
 import { Footer } from '~/components/footer/footer';
 import { Header } from '~/components/header';

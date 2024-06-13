@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DefaultContentBody } from 'dc-delivery-sdk-js';
 
@@ -40,8 +42,8 @@ const MappingNotFound = (content: DefaultContentBody) => {
         margin: '10px',
       }}
     >
-      <h3 className="text-xl font-black">{content._meta?.name}</h3>
-      <h4 className="italic">{content._meta?.deliveryId}</h4>
+      <h3 className="text-xl font-black">{content._meta.name}</h3>
+      <h4 className="italic">{content._meta.deliveryId}</h4>
       <p className="mb-4 mt-4">No render available for this component. Showing JSON content.</p>
       <pre
         style={{
@@ -63,7 +65,6 @@ export interface AmplienceContentProps {
 
 // Wrapper component maps Amplience components based on content schema
 const AmplienceContent = ({ content }: AmplienceContentProps) => {
-  // eslint-disable-next-line no-underscore-dangle
   const contentSchema = content?._meta.schema || '';
 
   const Component = COMPONENT_MAPPING[contentSchema] ?? MappingNotFound;

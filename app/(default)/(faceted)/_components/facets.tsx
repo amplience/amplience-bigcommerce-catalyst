@@ -1,5 +1,8 @@
 'use client';
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { FormEvent, useRef } from 'react';
+
 import {
   Accordion,
   AccordionContent,
@@ -11,9 +14,6 @@ import { Checkbox } from '@bigcommerce/components/checkbox';
 import { Input } from '@bigcommerce/components/input';
 import { Label } from '@bigcommerce/components/label';
 import { Rating } from '@bigcommerce/components/rating';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { FormEvent, useRef } from 'react';
-
 import { RatingSearchFilterItem } from '~/client/generated/graphql';
 import { Link } from '~/components/link';
 import { cn } from '~/lib/utils';
@@ -68,7 +68,7 @@ export const Facets = ({ facets, pageType }: Props) => {
     const searchParam = searchParams.get('term');
     const filteredSearchParams = Array.from(formData.entries())
       .filter((entry): entry is [string, string] => {
-        return entry instanceof File === false;
+        return !(entry instanceof File);
       })
       .filter(([, value]) => value !== '');
 

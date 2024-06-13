@@ -95,7 +95,7 @@ const getSessionCustomerId = async () => {
       return;
     }
 
-    return session.user.id;
+    return String(session.user.id);
   } catch {
     // No empty
   }

@@ -9,13 +9,13 @@ interface Props {
   params: {
     tagId: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export default async function BlogPostPage({ params: { tagId }, searchParams }: Props) {
   const blogPosts = await getBlogPosts({ tagId, ...searchParams });
 
-  if (!blogPosts || !blogPosts.isVisibleInNavigation) {
+  if (!blogPosts?.isVisibleInNavigation) {
     return notFound();
   }
 

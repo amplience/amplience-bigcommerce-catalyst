@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { DefaultContentBody } from 'dc-delivery-sdk-js';
 import React from 'react';
 
-import Card from '../card/card';
+import Card, { CardProps } from '../card/card';
 
 interface CardListProps {
   header?: string;
-  cards?: DefaultContentBody[];
+  cards?: CardProps[];
 }
 
 const CardList = ({ header, cards }: CardListProps) => {
@@ -15,17 +13,17 @@ const CardList = ({ header, cards }: CardListProps) => {
       {Boolean(header) && <h2>{header}</h2>}
       {cards && (
         <div className="space-x-4 sm:flex">
-          {cards.map((card: any, index: number) => {
+          {cards.map((card, index: number) => {
             return (
               <Card
+                cardName={card.cardName}
+                description={card.description}
+                image={card.image}
                 key={index}
+                links={card.links}
                 style={{
                   width: `calc(100%/${cards.length})`,
                 }}
-                image={card.image}
-                cardName={card.cardName}
-                description={card.description}
-                links={card.links}
               />
             );
           })}

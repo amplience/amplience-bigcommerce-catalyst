@@ -1,8 +1,8 @@
 'use client';
 
-import { Counter } from '@bigcommerce/components/counter';
 import { useState } from 'react';
 
+import { Counter } from '@bigcommerce/components/counter';
 import {
   CartLineItemInput,
   CartPhysicalItem,

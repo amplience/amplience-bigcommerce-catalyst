@@ -1,3 +1,9 @@
+/* eslint-disable import/no-named-as-default */
+import { Loader2 as Spinner } from 'lucide-react';
+import { ChangeEvent, useRef, useState } from 'react';
+import { useFormStatus } from 'react-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 import { Button } from '@bigcommerce/components/button';
 import {
   Field,
@@ -10,11 +16,6 @@ import {
 import { Input } from '@bigcommerce/components/input';
 import { Message } from '@bigcommerce/components/message';
 import { TextArea } from '@bigcommerce/components/text-area';
-import { Loader2 as Spinner } from 'lucide-react';
-import { ChangeEvent, useRef, useState } from 'react';
-import { useFormStatus } from 'react-dom';
-// eslint-disable-next-line import/no-named-as-default
-import ReCAPTCHA from 'react-google-recaptcha';
 
 import { submitContactForm } from './_actions/submit-contact-form';
 
@@ -79,7 +80,9 @@ export const ContactUs = ({ fields, pageEntityId, reCaptchaSettings }: ContactUs
 
   const onReCatpchaChange = (token: string | null) => {
     if (!token) {
-      return setReCaptchaValid(false);
+      setReCaptchaValid(false);
+
+      return;
     }
 
     setReCaptchaToken(token);
@@ -88,7 +91,9 @@ export const ContactUs = ({ fields, pageEntityId, reCaptchaSettings }: ContactUs
 
   const onSubmit = async (formData: FormData) => {
     if (reCaptchaSettings?.isEnabledOnStorefront && !reCaptchaToken) {
-      return setReCaptchaValid(false);
+      setReCaptchaValid(false);
+
+      return;
     }
 
     setReCaptchaValid(true);
@@ -117,7 +122,7 @@ export const ContactUs = ({ fields, pageEntityId, reCaptchaSettings }: ContactUs
     const validityState = e.target.validity;
     const validationStatus = validityState.valueMissing || validityState.typeMismatch;
 
-    return setInputValidation(!validationStatus);
+    setInputValidation(!validationStatus);
   };
 
   return (
