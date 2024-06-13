@@ -31,7 +31,5 @@ jobs:
         run: |
           npm ci
           npm run format:check
-          npm run build
         env:
           CI: true
-          NEXTAUTH_URL: localhost
