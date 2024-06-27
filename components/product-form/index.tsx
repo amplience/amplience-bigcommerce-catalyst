@@ -1,10 +1,10 @@
 'use client';
 
-import { Button } from '@bigcommerce/components/button';
 import { AlertCircle, Check, Heart } from 'lucide-react';
 import { FormProvider } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
+import { Button } from '@bigcommerce/components/button';
 import { getProduct } from '~/client/queries/get-product';
 import { ExistingResultType } from '~/client/util';
 
@@ -55,7 +55,7 @@ export const ProductForm = ({ product }: { product: Product }) => {
 
   return (
     <FormProvider handleSubmit={handleSubmit} register={register} {...methods}>
-      <form className="flex flex-col gap-6 @container" onSubmit={handleSubmit(productFormSubmit)}>
+      <form className="@container flex flex-col gap-6" onSubmit={handleSubmit(productFormSubmit)}>
         <input type="hidden" value={product.entityId} {...register('product_id')} />
 
         {product.productOptions?.map((option) => {
@@ -88,7 +88,7 @@ export const ProductForm = ({ product }: { product: Product }) => {
 
         <QuantityField />
 
-        <div className="mt-4 flex flex-col gap-4 @md:flex-row">
+        <div className="@md:flex-row mt-4 flex flex-col gap-4">
           <AddToCart disabled={product.availabilityV2.status === 'Unavailable'} />
 
           {/* NOT IMPLEMENTED YET */}

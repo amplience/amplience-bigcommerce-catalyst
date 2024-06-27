@@ -10,7 +10,7 @@ import { SortBy } from '../_components/sort-by';
 import { fetchFacetedSearch } from '../fetch-faceted-search';
 
 interface Props {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export const metadata = {

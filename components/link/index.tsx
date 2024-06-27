@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-base-to-string */
 'use client';
 
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports

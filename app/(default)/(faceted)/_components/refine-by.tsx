@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 'use client';
 
-import { Tag, TagAction, TagContent } from '@bigcommerce/components/tag';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
+import { Tag, TagAction, TagContent } from '@bigcommerce/components/tag';
 
 import type { Facet, PageType, PublicParamKeys } from '../types';
 
@@ -117,11 +119,11 @@ export const RefineBy = (props: Props) => {
 
     const params = new URLSearchParams(filteredParams);
 
-    return router.push(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const clearAllRefinements = () => {
-    return router.push(pathname);
+    router.push(pathname);
   };
 
   if (!refinements.length) {

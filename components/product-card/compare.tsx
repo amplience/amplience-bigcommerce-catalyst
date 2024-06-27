@@ -1,8 +1,9 @@
 'use client';
 
+import { useEffect, useId, useState } from 'react';
+
 import { Checkbox } from '@bigcommerce/components/checkbox';
 import { Label } from '@bigcommerce/components/label';
-import { useEffect, useId, useState } from 'react';
 
 import { useCompareProductsContext } from '../../app/contexts/compare-products-context';
 

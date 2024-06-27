@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import { useId } from 'react';
+
 import {
   ProductCard as ComponentsProductCard,
   ProductCardImage,
@@ -7,9 +10,6 @@ import {
   ProductCardInfoProductName,
 } from '@bigcommerce/components/product-card';
 import { Rating } from '@bigcommerce/components/rating';
-import Image from 'next/image';
-import { useId } from 'react';
-
 import { Link } from '~/components/link';
 import { cn } from '~/lib/utils';
 

@@ -1,5 +1,10 @@
 'use client';
 
+import debounce from 'lodash.debounce';
+import { Search, Loader2 as Spinner, X } from 'lucide-react';
+import Image from 'next/image';
+import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+
 import { Button } from '@bigcommerce/components/button';
 import { Field, FieldControl, Form } from '@bigcommerce/components/form';
 import { Input, InputIcon } from '@bigcommerce/components/input';
@@ -11,11 +16,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@bigcommerce/components/sheet';
-import debounce from 'lodash.debounce';
-import { Search, Loader2 as Spinner, X } from 'lucide-react';
-import Image from 'next/image';
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
-
 import { getQuickSearchResults } from '~/client/queries/get-quick-search-results';
 import { ExistingResultType } from '~/client/util';
 import { cn } from '~/lib/utils';

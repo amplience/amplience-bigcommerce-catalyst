@@ -1,5 +1,8 @@
 'use client';
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
 import {
   Sheet,
   SheetClose,
@@ -8,8 +11,6 @@ import {
   SheetOverlay,
   SheetTitle,
 } from '@bigcommerce/components/sheet';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 import { ProductSheetContent } from './product-sheet-content';
 

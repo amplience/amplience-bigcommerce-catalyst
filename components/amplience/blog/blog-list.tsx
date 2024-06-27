@@ -1,21 +1,45 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { ContentClient } from 'dc-delivery-sdk-js';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ContentClient, DefaultContentBody } from 'dc-delivery-sdk-js';
 import { FilterByRequest, IOrder } from 'dc-delivery-sdk-js/build/main/lib/content/model/FilterBy';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+
 import { createAmplienceClient } from '~/amplience-client';
+import { clientOptionsMapper } from '~/amplience-client/mappers/client-options-mapper';
+
+import { AmplienceImage } from '../image/image.types';
+
 import BlogCard from './blog-card';
 
 export type SortByValue = 'default' | 'title' | 'author';
 
-export interface BlogProps {
-  amplienceClientOptions: any;
+export interface BlogListProps {
+  hubName: string;
+  locale?: string;
+  stagingEnvironment?: string;
+}
+
+export interface Blog extends DefaultContentBody {
+  snippet: {
+    title: string;
+    author: string;
+    blogdate: string;
+    description: string;
+    image: { image: AmplienceImage };
+  };
 }
 
 async function fetchBlogs(
   options: { key?: SortByValue; order?: IOrder },
   amplienceClient: ContentClient,
-) {
+): Promise<Blog[]> {
   const { key = 'default', order = 'DESC' } = options;
   const fetchPage = async (nextCursor?: string): Promise<any> => {
     const filterRequest: FilterByRequest = {
@@ -39,42 +63,44 @@ async function fetchBlogs(
       },
     };
     const results = await amplienceClient.filterContentItems(filterRequest);
-    const responses = results?.responses || [];
+    const responses = results.responses || [];
 
-    if (results?.page.nextCursor) {
-      return [...responses, ...(await fetchPage(results?.page.nextCursor))];
+    if (results.page.nextCursor) {
+      return [...responses, ...(await fetchPage(results.page.nextCursor))];
     }
-    return responses;
+
+    return responses.map((r) => r.content);
   };
 
   return fetchPage();
 }
 
-const BlogList = ({ amplienceClientOptions }: BlogProps) => {
-  const amplienceClient = createAmplienceClient(amplienceClientOptions);
-
-  const [hydratedBlogs, setHydratedBlogs] = useState<any[]>([]);
+const BlogList = ({ hubName, locale, stagingEnvironment }: BlogListProps) => {
+  const [hydratedBlogs, setHydratedBlogs] = useState<Blog[]>([]);
   const [sortOrder, setSortOrder] = useState<IOrder>('DESC');
   const [sortValue, setSortValue] = useState<SortByValue>('default');
 
-  const handleSortValueChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    setSortValue(e.target.value as SortByValue);
-  };
-
-  const handleSortOrderChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    setSortOrder(e.target.value as IOrder);
-  };
+  const amplienceClient = createAmplienceClient(
+    clientOptionsMapper({ hubName, locale, stagingEnvironment }),
+  );
 
   useEffect(() => {
     const fetchData = async () => {
       const blogs = await fetchBlogs({ order: sortOrder, key: sortValue }, amplienceClient);
-      console.log(blogs);
+
       setHydratedBlogs(blogs);
     };
+
     void fetchData();
   }, [sortOrder, sortValue]);
+
+  const handleSortValueChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortValue(e.target.value as SortByValue);
+  };
+
+  const handleSortOrderChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(e.target.value as IOrder);
+  };
 
   return (
     <div>
@@ -102,7 +128,14 @@ const BlogList = ({ amplienceClientOptions }: BlogProps) => {
           ? hydratedBlogs.map((blog, index) => {
               return (
                 <div key={index}>
-                  <BlogCard {...blog} />
+                  <BlogCard
+                    author={blog.snippet.author}
+                    blogdate={blog.snippet.blogdate}
+                    deliveryKey={blog._meta.deliveryKey || ''}
+                    description={blog.snippet.description}
+                    image={blog.snippet.image.image}
+                    title={blog.snippet.title}
+                  />
                 </div>
               );
             })

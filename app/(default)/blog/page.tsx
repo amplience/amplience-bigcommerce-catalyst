@@ -7,7 +7,7 @@ import { BlogPostCard } from '~/components/blog-post-card';
 import { Link } from '~/components/link';
 
 interface Props {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
@@ -23,7 +23,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 export default async function BlogPostPage({ searchParams }: Props) {
   const blogPosts = await getBlogPosts(searchParams);
 
-  if (!blogPosts || !blogPosts.isVisibleInNavigation) {
+  if (!blogPosts?.isVisibleInNavigation) {
     return notFound();
   }
 

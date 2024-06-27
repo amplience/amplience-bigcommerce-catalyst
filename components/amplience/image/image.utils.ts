@@ -142,8 +142,8 @@ export function getImageURL(
   }
 
   // Remove all existing URL parameters
-  if (removeAllParams && url.indexOf('?') > -1) {
-    url = url.split('?')[0] as string;
+  if (removeAllParams && url.includes('?')) {
+    url = url.split('?')[0] || '';
   }
 
   // Get parameters from Transformations

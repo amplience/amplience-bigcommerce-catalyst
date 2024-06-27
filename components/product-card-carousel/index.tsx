@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 import {
   Carousel,
   CarouselContent,
@@ -5,7 +7,6 @@ import {
   CarouselNextIndicator,
   CarouselPreviousIndicator,
 } from '@bigcommerce/components/carousel';
-import { useId } from 'react';
 
 import { Product, ProductCard } from '../product-card';
 

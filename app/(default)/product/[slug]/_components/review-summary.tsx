@@ -1,6 +1,6 @@
-import { Rating } from '@bigcommerce/components/rating';
 import { useId } from 'react';
 
+import { Rating } from '@bigcommerce/components/rating';
 import { getProductReviews } from '~/client/queries/get-product-reviews';
 import { cn } from '~/lib/utils';
 

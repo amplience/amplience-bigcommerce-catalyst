@@ -1,5 +1,8 @@
 'use client';
 
+import { Filter } from 'lucide-react';
+import { PropsWithChildren, useEffect, useState } from 'react';
+
 import { Button } from '@bigcommerce/components/button';
 import {
   Sheet,
@@ -10,8 +13,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@bigcommerce/components/sheet';
-import { Filter } from 'lucide-react';
-import { PropsWithChildren, useEffect, useState } from 'react';
 
 export const MobileSideNav = ({ children }: PropsWithChildren) => {
   const [open, setOpen] = useState(false);

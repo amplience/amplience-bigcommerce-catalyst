@@ -1,3 +1,7 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
 import {
   BlogPostAuthor,
   BlogPostBanner,
@@ -6,10 +10,6 @@ import {
   BlogPostTitle,
 } from '@bigcommerce/components/blog-post-card';
 import { Tag, TagContent } from '@bigcommerce/components/tag';
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-
 import { getBlogPost } from '~/client/queries/get-blost-post';
 import { Link } from '~/components/link';
 import { SharingLinks } from '~/components/sharing-links';
@@ -33,7 +33,7 @@ export async function generateMetadata({ params: { blogId } }: Props): Promise<M
 export default async function BlogPostPage({ params: { blogId } }: Props) {
   const blogPost = await getBlogPost(+blogId);
 
-  if (!blogPost || !blogPost.isVisibleInNavigation) {
+  if (!blogPost?.isVisibleInNavigation) {
     return notFound();
   }
 
