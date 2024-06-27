@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { Button } from '@bigcommerce/components/button';
 import {
   Slideshow,
@@ -9,7 +11,6 @@ import {
   SlideshowPreviousIndicator,
   SlideshowSlide,
 } from '@bigcommerce/components/slideshow';
-import Image from 'next/image';
 
 import SlideshowBG from './slideshow-bg-01.jpg';
 

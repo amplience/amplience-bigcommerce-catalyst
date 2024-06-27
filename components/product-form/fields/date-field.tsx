@@ -1,6 +1,5 @@
 import { DatePicker } from '@bigcommerce/components/date-picker';
 import { Label } from '@bigcommerce/components/label';
-
 import { getProduct } from '~/client/queries/get-product';
 import { ExistingResultType, Unpacked } from '~/client/util';
 

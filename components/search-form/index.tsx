@@ -1,10 +1,11 @@
 'use client';
 
+import { Loader2 as Spinner } from 'lucide-react';
+import { useFormStatus } from 'react-dom';
+
 import { Button } from '@bigcommerce/components/button';
 import { Field, FieldControl, Form, FormSubmit } from '@bigcommerce/components/form';
 import { Input } from '@bigcommerce/components/input';
-import { Loader2 as Spinner } from 'lucide-react';
-import { useFormStatus } from 'react-dom';
 
 interface Props {
   initialTerm?: string;

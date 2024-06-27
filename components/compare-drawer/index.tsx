@@ -1,5 +1,9 @@
 'use client';
 
+import { X } from 'lucide-react';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
 import {
   Accordion,
   AccordionContent,
@@ -7,10 +11,6 @@ import {
   AccordionTrigger,
 } from '@bigcommerce/components/accordion';
 import { Button } from '@bigcommerce/components/button';
-import { X } from 'lucide-react';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-
 import { CheckedProduct, useCompareProductsContext } from '~/app/contexts/compare-products-context';
 import { Link } from '~/components/link';
 

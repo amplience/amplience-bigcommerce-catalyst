@@ -1,9 +1,10 @@
 'use client';
 
-import { Button } from '@bigcommerce/components/button';
 import { AlertCircle, Check } from 'lucide-react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { toast } from 'react-hot-toast';
+
+import { Button } from '@bigcommerce/components/button';
 
 import { Link } from '../link';
 

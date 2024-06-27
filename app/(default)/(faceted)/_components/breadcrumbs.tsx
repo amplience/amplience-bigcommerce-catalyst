@@ -1,11 +1,11 @@
+import { ChevronRight } from 'lucide-react';
+import { Fragment } from 'react';
+
 import {
   BreadcrumbDivider,
   BreadcrumbItem,
   Breadcrumbs as ComponentsBreadcrumbs,
 } from '@bigcommerce/components/breadcrumbs';
-import { ChevronRight } from 'lucide-react';
-import { Fragment } from 'react';
-
 import { Link } from '~/components/link';
 
 interface Props {

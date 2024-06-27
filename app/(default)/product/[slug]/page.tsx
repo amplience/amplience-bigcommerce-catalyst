@@ -14,7 +14,7 @@ import { Warranty } from './_components/warranty';
 
 interface ProductPageProps {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {

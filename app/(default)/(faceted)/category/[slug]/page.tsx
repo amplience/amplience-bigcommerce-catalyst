@@ -17,7 +17,7 @@ interface Props {
   params: {
     slug: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

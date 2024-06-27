@@ -1,8 +1,9 @@
 'use client';
 
-import { Button } from '@bigcommerce/components/button';
 import { ShoppingCart, Loader2 as Spinner } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
+
+import { Button } from '@bigcommerce/components/button';
 
 export const AddToCart = ({ disabled = false }: { disabled?: boolean }) => {
   const { formState } = useFormContext();

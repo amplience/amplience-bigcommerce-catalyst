@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import {
   BlogPostAuthor,
   BlogPostBanner,
@@ -7,8 +9,6 @@ import {
   BlogPostTitle,
   BlogPostCard as ComponentsBlogPostCard,
 } from '@bigcommerce/components/blog-post-card';
-import Image from 'next/image';
-
 import { getBlogPosts } from '~/client/queries/get-blog-posts';
 import { ExistingResultType } from '~/client/util';
 import { Link } from '~/components/link';

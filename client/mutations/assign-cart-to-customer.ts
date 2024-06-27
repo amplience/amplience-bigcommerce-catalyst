@@ -27,7 +27,7 @@ export const assignCartToCustomer = async (
         cartEntityId,
       },
     },
-    customerId: Number(customerId),
+    customerId,
     fetchOptions: { cache: 'no-store' },
   });
 
