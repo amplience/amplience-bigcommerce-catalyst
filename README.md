@@ -11,7 +11,7 @@ This version of the Catalyst app integrates Amplience as the Content CMS.
 
 The documentation starting here below is 'as-is' from BigCommerce. For Amplience specifics please see the docs listed under Amplience Contents.
 
-`amplience-bigcommerce-catalyst` project is intended for DEMO PURPOSES ONLY, and not for production-optimized environments. It will give developers the foundation to integrate BigCommerce Catalyst and Amplience Dynamic Content.
+`amplience-bigcommerce-catalyst` project is intended for **DEMO PURPOSES ONLY**, and not for production-optimized environments. It will give developers the foundation to integrate BigCommerce Catalyst and Amplience Dynamic Content.
 
 ## Amplience Contents
 
