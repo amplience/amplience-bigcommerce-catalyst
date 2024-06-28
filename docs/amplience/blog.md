@@ -23,11 +23,11 @@ This is located in the following location of your application: `/blog-filter`
 
 ## How does this work
 
-This page uses the [Amplience Filter API](https://amplience.com/developers/docs/apis/content-delivery/filter-api/) to return blogs and display as cards.
+This page uses the [Amplience Filter API](https://amplience.com/developers/docs/apis/content-delivery/filter-api/) to return blogs and displays as cards.
 
 You can sort by the following values, using ascending or descending order:
 
-- default
+- date
 - author
 - title
 

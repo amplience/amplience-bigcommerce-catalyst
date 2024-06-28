@@ -10,7 +10,7 @@ Main BigCommerce configuration is set through an environment variable. You can s
 | BIGCOMMERCE_STORE_HASH                   | Store Hash, that you can find in the API path or admin URL: https://api.bigcommerce.com/stores/[store_hash]/v3/ |
 | BIGCOMMERCE_ACCESS_TOKEN                 | Access Token, that you can get when creating a new set of credentials                                           |
 | BIGCOMMERCE_CUSTOMER_IMPERSONATION_TOKEN | Customer Impersonation Token, to be generated using the access token from the API credentials                   |
-| BIGCOMMERCE_CHANNEL_ID                   | Channell ID, default to 1                                                                                       |
+| BIGCOMMERCE_CHANNEL_ID                   | Channel ID, default to 1                                                                                       |
 | CLIENT_LOGGER                            | Client Logger, default to false                                                                                 |
 | ENABLE_ADMIN_ROUTE                       | Enable Admin Route, default to true                                                                             |
 
@@ -67,7 +67,7 @@ curl --request POST \
 
 See https://developer.bigcommerce.com/docs/rest-authentication/tokens#create-a-token for more information.
 
-You will also need your default store Site ID, which is different than the Store Hash.
+You will also need your default store Site ID, which is different to the Store Hash.
 You can go in your store and get the ID from the URL: `https://[site_id].mybigcommerce.com`
 
 From there you can update the Installation Parameters of the eComm Toolkit extension with the following:
@@ -84,24 +84,13 @@ From there you can update the Installation Parameters of the eComm Toolkit exten
 
 ### Content Types visualisation URL
 
-You wil need to update / add new visualisation URLs:
+You will need to update / add new visualisation URLs:
 
-- Shopify Hydrogen Development
-- Shopify Hydrogen Production
+- BigCommerce Catalyst Development
+- BigCommerce Catalyst Production
 
-Here is the list of Content Types to update:
+Here is the list of Content Types to update: https://github.com/amplience/amplience-bigcommerce-catalyst/blob/main/docs/amplience/amplience-components-list.md
 
-- Blog
-- Card
-- Card List
-- Curated Product Grid
-- Dynamic Product Grid
-- Flexible Slot
-- Homepage (Site Pages hierarchy root node)
-- Image
-- Rich Text
-- Simple Banner
-- Text
 
 The URL to use is the following:
 
@@ -206,3 +195,8 @@ You can then get started immediately by running:
 ```bash
 npm run dev
 ```
+## Additional environment parameter to build locally
+
+If you wish to run locally there is an additional parameter required to be added to your .env.local file
+
+NEXTAUTH_URL=localhost
