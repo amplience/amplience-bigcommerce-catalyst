@@ -33,19 +33,9 @@ The documentation starting here below is 'as-is' from BigCommerce. For Amplience
 - [Amplience Extensions List](./docs/amplience/amplience-extensions-list.md)
   - eComm Toolkit
 - [Amplience Components List](./docs/amplience/amplience-components-list.md)
-  - [Blog](./docs/amplience/blog.md)
-  - Card
-  - Card List
-  - Curated Product Grid
-  - Dynamic Product Grid
-  - Homepage (Site Pages hierarchy root node)
-  - Image
-  - Rich Text
-  - Simple Banner
-  - Text
-  - Amplience Content wrapper
+  
 - [Amplience Slots List](./docs/amplience/amplience-slots-list.md)
-  - Flexible Slot
+  
 
 ## Requirements
 
@@ -73,3 +63,6 @@ Learn more about Catalyst at [catalyst.dev](https://catalyst.dev).
 - [GraphQL Storefront API Playground](https://developer.bigcommerce.com/graphql-storefront/playground)
 - [GraphQL Storefront API Explorer](https://developer.bigcommerce.com/graphql-storefront/explorer)
 - [BigCommerce DevDocs](https://developer.bigcommerce.com/docs/build)
+
+
+Note: This code is built against the code version of BigCommerce Catalyst 0.3.0

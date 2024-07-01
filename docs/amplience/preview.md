@@ -14,3 +14,5 @@ The homepage is already set up with content which has already been published.
 - Add some content into the slot
 - Schedule for the future
 - Preview
+
+NB: Preview is fully functional through scheduling however, does not work when navigating through links currently.
