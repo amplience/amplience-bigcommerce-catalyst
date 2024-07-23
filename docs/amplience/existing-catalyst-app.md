@@ -1,18 +1,18 @@
 # How to port Amplience into an existing Catalyst app
 
-This guide aimed at existing Catalyst apps and the steps needed to fetch and visualize Amplience content.
+This guide is aimed at existing Catalyst apps and the steps needed to fetch and visualize Amplience content.
 
 ## Add Amplience environment variables
 
 Update `.env.local` to include the Amplience hub you want to use:
 
 ```env
-AMPLIENCE_HUBNAME=youhubnamehere
+AMPLIENCE_HUBNAME=yourhubnamehere
 ```
 
 ## Implement the Amplience client
 
-To fetch any content from Amplience the first thing you will need a client to make the requests.
+To fetch any content from Amplience the first thing you will need is a client to make the requests.
 
 Install Amplience client dependencies:
 
@@ -59,7 +59,7 @@ Next install Amplience component depedencies:
 npm install markdown-to-jsx
 ```
 
-Copy the amplience components directory `./components/amplience`:
+Copy the Amplience components directory `./components/amplience`:
 
 ```bash
 cp -R '/path/to/amplience-catalyst-app/components/amplience' '/path/to/existing-catalyst-app/compontents'
@@ -71,7 +71,7 @@ You will also need to copy a single `util` file:
 mkdir -p /path/to/existing-catalyst-app/utils/ && cp /path/to/amplience-catalyst-app/utils/localized-string.ts $_
 ```
 
-Now you can use render Amplience content by simply passing Amplienc content to the `AmplenceContent` component:
+Now you can render Amplience content by simply passing Amplience content to the `AmplenceContent` component:
 
 ```js
 <AmplienceContent content={simpleBanner} />
@@ -79,7 +79,7 @@ Now you can use render Amplience content by simply passing Amplienc content to t
 
 ## Using a Visualization page
 
-If you would like to Visualise Amplience content then you will need to provide a Visualization page route. To do this:
+If you would like to Visualize Amplience content then you will need to provide a Visualization page route. To do this:
 
 Install Visualization dependencies:
 
